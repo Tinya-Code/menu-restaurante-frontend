@@ -1,0 +1,34 @@
+<div class="space-y-8">
+  <div class="space-y-6">
+    <div class="flex flex-col gap-2 items-center text-center">
+      <span class="bg-primary/10 text-primary px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-[0.3em]">Signature Dish</span>
+      <p class="text-5xl font-bungee text-secondary">{{ product().price | precio }}</p>
+    </div>
+
+    <p class="text-muted leading-relaxed text-center text-lg italic px-4">
+      {{ product().description || 'Frescura incomparable preparada al momento con la pesca del día y limones seleccionados.' }}
+    </p>
+
+    <div class="flex items-center justify-between p-4 bg-primary/5 rounded-2xl border-2 border-primary/10">
+      <span class="text-xs font-black uppercase tracking-widest text-secondary opacity-60">Unidades</span>
+      <div class="flex items-center gap-4">
+        <button (click)="decrease()" 
+                class="w-12 h-12 flex items-center justify-center bg-white rounded-full shadow-md hover:text-primary transition-all disabled:opacity-30"
+                [disabled]="quantity() <= 1">
+          <lucide-icon [img]="Minus" class="w-5 h-5"></lucide-icon>
+        </button>
+        <span class="w-8 text-center font-bungee text-2xl text-secondary">{{ quantity() }}</span>
+        <button (click)="increase()" 
+                class="w-12 h-12 flex items-center justify-center bg-white rounded-full shadow-md hover:text-primary transition-all">
+          <lucide-icon [img]="Plus" class="w-5 h-5"></lucide-icon>
+        </button>
+      </div>
+    </div>
+
+    <button (click)="onAddToCart()" 
+            class="w-full bg-secondary text-white py-5 rounded-2xl font-bungee text-xl shadow-premium hover:bg-primary transition-all flex items-center justify-center gap-4 uppercase tracking-widest">
+      <lucide-icon [img]="ShoppingBag" class="w-6 h-6"></lucide-icon>
+      Añadir al Pedido
+    </button>
+  </div>
+</div>

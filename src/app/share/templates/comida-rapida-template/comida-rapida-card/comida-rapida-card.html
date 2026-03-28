@@ -1,0 +1,28 @@
+<div class="group relative bg-white rounded-3xl p-6 shadow-premium hover:shadow-primary/20 hover:scale-[1.02] transition-all duration-300 border-b-8 border-secondary/5 hover:border-primary/20 overflow-hidden">
+  <!-- Badge Dinámico -->
+  <div class="absolute top-0 right-0 bg-primary text-secondary px-4 py-1 rounded-bl-2xl font-black text-[9px] uppercase tracking-widest transform translate-x-1 -translate-y-1 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform">
+    Hot & Fresh
+  </div>
+
+  <div class="relative z-10 space-y-4">
+    <div class="flex items-center gap-2">
+      <lucide-icon [img]="Zap" class="w-4 h-4 text-primary"></lucide-icon>
+      <span class="text-[10px] font-black uppercase tracking-tighter text-muted italic">Express Choice</span>
+    </div>
+
+    <h3 class="text-2xl font-bungee text-secondary leading-none tracking-tighter uppercase italic group-hover:text-primary transition-colors">
+      {{ product().name }}
+    </h3>
+
+    <p class="text-muted text-xs leading-relaxed line-clamp-2 italic font-medium">
+      {{ product().description || 'Sabor explosivo y preparación instantánea para saciar tu antojo ahora mismo.' }}
+    </p>
+
+    <div class="flex items-center justify-between pt-4">
+      <span class="text-2xl font-bungee text-secondary">{{ product().price | precio }}</span>
+      <button class="bg-secondary text-primary p-3 rounded-2xl hover:bg-primary hover:text-secondary transition-colors shadow-lg">
+        <lucide-icon [img]="ShoppingBag" class="w-5 h-5"></lucide-icon>
+      </button>
+    </div>
+  </div>
+</div>

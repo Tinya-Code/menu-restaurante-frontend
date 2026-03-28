@@ -1,1 +1,117 @@
 /* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
+
+@font-face {
+  font-family: 'Bungee';
+  src: url('/fonts/Bungee-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Oleo Script';
+  src: url('/fonts/OleoScript-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Oleo Script';
+  src: url('/fonts/OleoScript-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  src: url('/fonts/OpenSans-VariableFont_wdth,wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  src: url('/fonts/OpenSans-Italic-VariableFont_wdth,wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@theme {
+  --font-bungee: "Bungee", system-ui;
+  --font-outfit: "Outfit", system-ui;
+  --font-oleo: "Oleo Script", cursive;
+  --font-open-sans: "Open Sans", sans-serif;
+  
+  --shadow-premium: 0 20px 50px rgba(0, 0, 0, 0.05);
+  --shadow-premium-lg: 0 30px 60px rgba(0, 0, 0, 0.12);
+  
+  /* Definir variables base de colores */
+
+   --color-primary: #00A896;   /* Verde turquesa */
+  --color-secondary: #0D0D0D; /* Arena clara */
+  --color-accent: #F07167;    /* Coral vibrante */
+  --color-muted: #6C757D;     /* Gris suave */
+  --color-background: #FFFFFF;/* Fondo limpio */
+  
+  --radius-4xl: 2rem;
+  --radius-5xl: 3rem;
+}
+
+/* Paletas Temáticas - Sobrescribiendo variables de Tailwind directamente */
+
+.theme-polleria {
+  --color-primary: #FF4D00;
+  --color-secondary: #1A1A1A;
+  --color-accent: #FFD700;
+  --color-muted: #666666;
+  --color-background: #FDFDFD;
+  --font-display: var(--font-bungee);
+  --font-body: var(--font-outfit);
+}
+
+.theme-chifa {
+  --color-primary: #C41E3A;
+  --color-secondary: #0D0D0D;
+  --color-accent: #D4AF37;
+  --color-muted: #4A4A4A;
+  --color-background: #FFFBF2;
+  --font-display: var(--font-oleo);
+  --font-body: var(--font-open-sans);
+}
+
+.theme-cevicheria {
+  --color-primary: #0077BE;
+  --color-secondary: #002147;
+  --color-accent: #F4A460;
+  --color-muted: #5F7D8E;
+  --color-background: #FFFFFF;
+  --font-display: var(--font-open-sans);
+  --font-body: var(--font-outfit);
+}
+
+.theme-comida-rapida {
+  --color-primary: #FFD500;
+  --color-secondary: #E12026;
+  --color-accent: #FF8A00;
+  --color-muted: #555555;
+  --color-background: #F5F5F5;
+  --font-display: var(--font-bungee);
+  --font-body: var(--font-outfit);
+}
+
+/* Global Fixes */
+body {
+  font-family: var(--font-body, var(--font-outfit));
+  background-color: var(--color-background);
+  color: var(--color-secondary);
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+h1, h2, h3, h4, h5, h6, .font-display {
+  font-family: var(--font-display, var(--font-bungee));
+}

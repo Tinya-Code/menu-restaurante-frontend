@@ -1,0 +1,55 @@
+<div class="min-h-screen bg-neutral-50 p-6 md:p-12">
+  <!-- Hero Section -->
+  <header class="max-w-7xl mx-auto mb-12 text-center">
+    <h1 class="text-4xl md:text-6xl font-bungee text-secondary mb-4 drop-shadow-sm">
+      Food <span class="text-primary">Discovery</span>
+    </h1>
+    <p class="text-muted font-medium max-w-2xl mx-auto italic">
+      Explora los mejores sabores de nuestra red de restaurantes seleccionados para ti.
+    </p>
+  </header>
+
+  <!-- Restaurant Grid -->
+  <main class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+    @for (item of restaurants(); track item.restaurant.id; let i = $index) {
+      <div class="group bg-white rounded-3xl overflow-hidden shadow-premium transition-all hover:-translate-y-2 hover:shadow-2xl animate-in fade-in slide-in-from-bottom-5 duration-500"
+           [style.animation-delay]="(i * 100) + 'ms'">
+        
+        <!-- Card Image/Logo Placeholder -->
+        <div class="aspect-video bg-primary/10 flex items-center justify-center relative overflow-hidden">
+          <div class="absolute inset-0 bg-linear-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+        <lucide-icon [img]="Store" class="w-16 h-16 text-primary drop-shadow-md"></lucide-icon>
+      </div>
+
+      <!-- Card Body -->
+      <div class="p-6">
+        <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-accent mb-2 block">Restaurante Verificado</span>
+        <h2 class="text-xl font-bungee text-secondary mb-3 group-hover:text-primary transition-colors">
+          {{ item.restaurant.name }}
+        </h2>
+        
+        <div class="flex items-center gap-2 mb-6">
+          <div class="flex -space-x-1">
+            <div class="w-6 h-6 rounded-full bg-gray-200 border-2 border-white"></div>
+            <div class="w-6 h-6 rounded-full bg-gray-300 border-2 border-white"></div>
+          </div>
+          <span class="text-xs text-muted">Aclamado por +100 clientes</span>
+        </div>
+
+        <!-- Link -->
+        <a [routerLink]="['/menu', item.restaurant.slug]" 
+           class="w-full inline-flex items-center justify-center gap-2 bg-secondary text-primary py-3 px-6 rounded-xl font-bold transition-all hover:bg-secondary/90 hover:scale-[1.02] active:scale-95 shadow-lg group-hover:shadow-primary/20">
+          <span>Ver Menú</span>
+          <lucide-icon [img]="ChevronRight" class="w-4 h-4 transition-transform group-hover:translate-x-1"></lucide-icon>
+        </a>
+        </div>
+      </div>
+    } @empty {
+      <!-- Empty State (Fallback) -->
+      <div class="col-span-full text-center py-20">
+        <div class="inline-block animate-spin rounded-full h-12 w-12 border-4 border-primary border-t-transparent"></div>
+        <p class="mt-4 text-secondary font-bold">Cargando restaurantes...</p>
+      </div>
+    }
+  </main>
+</div>

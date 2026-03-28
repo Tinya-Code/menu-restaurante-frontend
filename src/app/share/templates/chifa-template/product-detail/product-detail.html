@@ -1,0 +1,34 @@
+<div class="space-y-8">
+  <div class="space-y-6">
+    <div class="flex flex-col gap-2">
+      <p class="text-4xl font-bungee text-primary">{{ product().price | precio }}</p>
+      <div class="w-16 h-1 bg-secondary rounded-full"></div>
+    </div>
+
+    <p class="text-muted leading-relaxed text-lg italic border-l-2 border-primary/20 pl-4">
+      {{ product().description || 'Un clásico del Chifa preparado con los secretos mejor guardados de nuestra cocina oriental.' }}
+    </p>
+
+    <div class="flex items-center justify-between p-6 bg-secondary/5 rounded-2xl border border-primary/10">
+      <span class="text-xs font-bold uppercase tracking-widest text-secondary opacity-60">Cantidad</span>
+      <div class="flex items-center gap-6">
+        <button (click)="decrease()" 
+                class="w-10 h-10 flex items-center justify-center bg-white rounded-lg shadow-sm hover:text-primary transition-all disabled:opacity-30"
+                [disabled]="quantity() <= 1">
+          <lucide-icon [img]="Minus" class="w-5 h-5"></lucide-icon>
+        </button>
+        <span class="w-8 text-center font-bungee text-2xl text-secondary">{{ quantity() }}</span>
+        <button (click)="increase()" 
+                class="w-10 h-10 flex items-center justify-center bg-white rounded-lg shadow-sm hover:text-primary transition-all">
+          <lucide-icon [img]="Plus" class="w-5 h-5"></lucide-icon>
+        </button>
+      </div>
+    </div>
+
+    <button (click)="onAddToCart()" 
+            class="w-full bg-primary text-secondary py-5 rounded-2xl font-bungee text-xl shadow-xl hover:scale-[1.01] active:scale-95 transition-all flex items-center justify-center gap-4">
+      <lucide-icon [img]="ShoppingBag" class="w-6 h-6"></lucide-icon>
+      Agregar al Carrito
+    </button>
+  </div>
+</div>

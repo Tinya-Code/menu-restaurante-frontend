@@ -1,0 +1,34 @@
+<div class="space-y-8">
+  <div class="space-y-6">
+    <div class="flex flex-col gap-2">
+      <p class="text-3xl font-bungee text-secondary">{{ product().price | precio }}</p>
+      <p class="text-sm font-bold uppercase tracking-widest text-muted">Precio Sugerido</p>
+    </div>
+
+    <p class="text-muted leading-relaxed text-lg italic">
+      {{ product().description || 'Una deliciosa opción preparada con los más frescos ingredientes y nuestra receta secreta.' }}
+    </p>
+
+    <div class="flex items-center justify-between p-4 bg-gray-50 rounded-4xl">
+      <span class="text-xs font-bold uppercase tracking-widest text-secondary opacity-60">Seleccionar Cantidad</span>
+      <div class="flex items-center gap-4">
+        <button (click)="decrease()" 
+                class="w-12 h-12 flex items-center justify-center bg-white rounded-xl shadow-sm hover:scale-105 active:scale-95 transition-all disabled:opacity-30"
+                [disabled]="quantity() <= 1">
+          <lucide-icon [img]="Minus" class="w-6 h-6"></lucide-icon>
+        </button>
+        <span class="w-8 text-center font-bungee text-2xl text-secondary">{{ quantity() }}</span>
+        <button (click)="increase()" 
+                class="w-12 h-12 flex items-center justify-center bg-white rounded-xl shadow-sm hover:scale-105 active:scale-95 transition-all">
+          <lucide-icon [img]="Plus" class="w-6 h-6"></lucide-icon>
+        </button>
+      </div>
+    </div>
+
+    <button (click)="onAddToCart()" 
+            class="w-full bg-secondary text-primary py-5 rounded-4xl font-bungee text-xl shadow-premium-lg hover:shadow-primary/20 hover:scale-[1.01] active:scale-95 transition-all flex items-center justify-center gap-4">
+      <lucide-icon [img]="ShoppingBag" class="w-6 h-6"></lucide-icon>
+      Agregar al Carrito
+    </button>
+  </div>
+</div>

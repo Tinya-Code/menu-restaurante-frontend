@@ -1,0 +1,17 @@
+<header class="bg-secondary text-primary p-8 md:p-16 mb-8 relative overflow-hidden">
+  <div class="absolute inset-0 bg-primary/5 pattern-grid-lg opacity-20"></div>
+  <div class="max-w-5xl mx-auto relative z-10 flex flex-col md:flex-row items-center gap-6">
+    <div class="w-24 h-24 bg-primary text-secondary rounded-3xl flex items-center justify-center shadow-premium-lg scale-110">
+      <lucide-icon [img]="BookOpen" class="w-12 h-12"></lucide-icon>
+    </div>
+    <div class="text-center md:text-left">
+      <h1 class="text-3xl md:text-5xl font-bungee leading-tight mb-2">
+        {{ name() }}
+      </h1>
+      <p class="font-oleo text-xl opacity-80">Explora nuestro delicioso menú</p>
+    </div>
+    <a routerLink="/" class="md:ml-auto text-xs font-bold uppercase tracking-widest bg-primary/20 py-2 px-4 rounded-full hover:bg-primary/30 transition-colors">
+      ← Volver a Inicio
+    </a>
+  </div>
+</header>

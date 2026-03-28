@@ -1,4 +1,4 @@
-@if (restaurantService.restaurant(); as restaurant) {
+@if (!isLoading() && restaurantService.restaurant(); as restaurant) {
   <div class="min-h-screen  transition-colors duration-500" 
        [ngClass]="'theme-' + restaurant.template_id"
        [style.backgroundColor]="'var(--color-background)'">

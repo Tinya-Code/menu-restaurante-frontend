@@ -1,4 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject, signal, effect, OnInit } from '@angular/core';
+import { forkJoin } from 'rxjs';
+
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { MockDataService } from '../../core/services/mock-data.service';
@@ -72,20 +74,27 @@ export class Menu implements OnInit {
   isModalOpen = signal(false);
   selectedProduct = signal<Product | null>(null);
   activeCategoryId = signal<string | null>(null);
+  isLoading = signal(true);
 
   ngOnInit(): void {
     // Escuchamos cambios en la ruta para cargar los datos de forma modular
     this.route.paramMap.subscribe(params => {
       const slug = params.get('slug') || 'restaurante-gran-gourmet-1';
-      
-      // Consulta 1: Datos del Restaurante
-      this.mockDataService.getRestaurantData(slug).subscribe(res => {
-        this.restaurantService.setRestaurantData(res);
-      });
-
-      // Consulta 2: Categorías y Productos
-      this.mockDataService.getMenuCategories(slug).subscribe(res => {
-        this.menuService.setMenuCategories(res);
+      this.isLoading.set(true);
+      // Usamos forkJoin para evitar condiciones de carrera en el DataStore
+      forkJoin({
+        restaurant: this.mockDataService.getRestaurantData(slug),
+        categories: this.mockDataService.getMenuCategories(slug)
+      }).subscribe({
+        next: (res) => {
+          this.restaurantService.setRestaurantData(res.restaurant);
+          this.menuService.setMenuCategories(res.categories);
+          this.isLoading.set(false);
+        },
+        error: (err) => {
+          console.error('Error loading menu:', err);
+          this.isLoading.set(false);
+        }
       });
     });
 

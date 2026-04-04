@@ -53,6 +53,9 @@ export interface RestaurantSettings {
   display_config: DisplayConfig;
   order_config: OrderConfig;
   business_config: BusinessConfig;
+  description: string;
+  tags: string[];
+  logo_url: string | null;
   created_at: string;
   updated_at: string;
 }
@@ -66,7 +69,6 @@ export interface Restaurant {
   template_id: string | null;
   phone: string | null;
   address: string | null;
-  logo_url: string | null;
   is_active: boolean;
   created_at: string;
   updated_at: string;

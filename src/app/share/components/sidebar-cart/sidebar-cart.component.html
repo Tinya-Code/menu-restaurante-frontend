@@ -6,7 +6,9 @@
 }
 
 <!-- Sidebar Drawer -->
-<div class="fixed top-0 right-0 h-full w-full max-w-md bg-background z-60 shadow-2xl flex flex-col transition-transform duration-500 ease-out"
+<div class="fixed top-0 right-0 h-full w-full max-w-md z-60 shadow-2xl flex flex-col transition-transform duration-500 ease-out transition-colors duration-500"
+     [ngClass]="'theme-' + templateId()"
+     [style.backgroundColor]="backgroundColor()"
      [class.translate-x-0]="isOpen()"
      [class.translate-x-full]="!isOpen()">
   

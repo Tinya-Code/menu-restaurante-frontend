@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Cart } from '../../../core/services/cart.service';
 import { PrecioPipe } from '../../pipes/precio.pipe';
@@ -16,6 +16,9 @@ import { LucideAngularModule, X, ShoppingBag, ArrowRight, ArrowLeft, Clock } fro
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SidebarCart {
+  templateId = input<string | null>();
+  backgroundColor = input<string | null>();
+
   private readonly _cart = inject(Cart);
   private readonly _businessHours = inject(BusinessHoursService);
 

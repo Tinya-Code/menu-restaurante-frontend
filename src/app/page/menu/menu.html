@@ -113,6 +113,10 @@
         </div>
     </app-modal>
     <app-whatsapp-button></app-whatsapp-button>
+    <app-sidebar-cart [templateId]="restaurant.template_id" 
+                      [backgroundColor]="'var(--color-background)'" />
+    <app-cart-trigger [templateId]="restaurant.template_id" 
+                      [backgroundColor]="'var(--color-background)'" />
   </div>
 } @else {
   <!-- Loading Skeleton -->

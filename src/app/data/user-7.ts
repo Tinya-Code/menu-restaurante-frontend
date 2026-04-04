@@ -21,7 +21,7 @@ export const restaurantResponse = {
       "template_id": "cevicheria",
       "phone": "924932128",
       "address": "Av. Los Precursores 1400, Lima",
-      "logo_url": null,
+      
       "is_active": true,
       "created_at": "2026-02-28T03:28:24.097231+00:00",
       "updated_at": "2026-02-28T03:28:24.097231+00:00"
@@ -106,12 +106,15 @@ export const restaurantResponse = {
         },
         "delivery_zones": []
       },
+      
+      "description": "Lo mejor de la cocina local.",
+      "tags": ["peruano", "tradicional", "familiar", "gourmet", "delivery", "saludable", "moderno", "economico", "pescados y mariscos", "carnes y parrillas", "pizzeria", "hamburgueseria", "pasteleria", "cafe", "fast food", "pet friendly", "zona wifi", "estacionamiento", "musica en vivo"],
+      "logo_url": null,
       "created_at": "2026-03-04T16:06:13.999+00:00",
       "updated_at": "2026-03-23T05:28:43.86+00:00"
     }
   }
 };
-
 export const menuCategoriesResponse = {
   "status": "success",
   "data": [
@@ -122,6 +125,7 @@ export const menuCategoriesResponse = {
         "menu_id": "menu-uuid-7",
         "name": "Entradas",
         "description": null,
+     "type": "entrada",
         "display_order": 0,
         "is_active": true,
         "created_at": "2026-02-28T03:28:24.097231+00:00",
@@ -138,6 +142,7 @@ export const menuCategoriesResponse = {
           "image_url": null,
           "is_available": true,
           "display_order": 0,
+          "is_recommended": true,
           "created_at": "2026-02-28T03:28:24.097231+00:00",
           "updated_at": "2026-02-28T03:28:24.097231+00:00"
         },
@@ -151,6 +156,7 @@ export const menuCategoriesResponse = {
           "image_url": null,
           "is_available": true,
           "display_order": 0,
+          "is_recommended": false,
           "created_at": "2026-02-28T03:28:24.097231+00:00",
           "updated_at": "2026-02-28T03:28:24.097231+00:00"
         },
@@ -164,6 +170,7 @@ export const menuCategoriesResponse = {
           "image_url": null,
           "is_available": true,
           "display_order": 0,
+          "is_recommended": false,
           "created_at": "2026-02-28T03:28:24.097231+00:00",
           "updated_at": "2026-02-28T03:28:24.097231+00:00"
         }
@@ -176,6 +183,7 @@ export const menuCategoriesResponse = {
         "menu_id": "menu-uuid-7",
         "name": "Sopas y Ensaladas",
         "description": null,
+     "type": "sopa",
         "display_order": 0,
         "is_active": true,
         "created_at": "2026-02-28T03:28:24.097231+00:00",
@@ -192,6 +200,7 @@ export const menuCategoriesResponse = {
           "image_url": null,
           "is_available": true,
           "display_order": 0,
+          "is_recommended": false,
           "created_at": "2026-02-28T03:28:24.097231+00:00",
           "updated_at": "2026-02-28T03:28:24.097231+00:00"
         },
@@ -205,6 +214,7 @@ export const menuCategoriesResponse = {
           "image_url": null,
           "is_available": true,
           "display_order": 0,
+          "is_recommended": false,
           "created_at": "2026-02-28T03:28:24.097231+00:00",
           "updated_at": "2026-02-28T03:28:24.097231+00:00"
         },
@@ -218,6 +228,7 @@ export const menuCategoriesResponse = {
           "image_url": null,
           "is_available": true,
           "display_order": 0,
+          "is_recommended": true,
           "created_at": "2026-02-28T03:28:24.097231+00:00",
           "updated_at": "2026-02-28T03:28:24.097231+00:00"
         }
@@ -230,6 +241,7 @@ export const menuCategoriesResponse = {
         "menu_id": "menu-uuid-7",
         "name": "Platos de Fondo",
         "description": null,
+     "type": "plato de fondo",
         "display_order": 0,
         "is_active": true,
         "created_at": "2026-02-28T03:28:24.097231+00:00",
@@ -246,6 +258,7 @@ export const menuCategoriesResponse = {
           "image_url": null,
           "is_available": true,
           "display_order": 0,
+          "is_recommended": false,
           "created_at": "2026-02-28T03:28:24.097231+00:00",
           "updated_at": "2026-02-28T03:28:24.097231+00:00"
         },
@@ -259,6 +272,7 @@ export const menuCategoriesResponse = {
           "image_url": null,
           "is_available": true,
           "display_order": 0,
+          "is_recommended": false,
           "created_at": "2026-02-28T03:28:24.097231+00:00",
           "updated_at": "2026-02-28T03:28:24.097231+00:00"
         },
@@ -272,6 +286,7 @@ export const menuCategoriesResponse = {
           "image_url": null,
           "is_available": true,
           "display_order": 0,
+          "is_recommended": false,
           "created_at": "2026-02-28T03:28:24.097231+00:00",
           "updated_at": "2026-02-28T03:28:24.097231+00:00"
         },
@@ -285,6 +300,7 @@ export const menuCategoriesResponse = {
           "image_url": null,
           "is_available": true,
           "display_order": 0,
+          "is_recommended": false,
           "created_at": "2026-02-28T03:28:24.097231+00:00",
           "updated_at": "2026-02-28T03:28:24.097231+00:00"
         },
@@ -298,6 +314,7 @@ export const menuCategoriesResponse = {
           "image_url": null,
           "is_available": true,
           "display_order": 0,
+          "is_recommended": true,
           "created_at": "2026-02-28T03:28:24.097231+00:00",
           "updated_at": "2026-02-28T03:28:24.097231+00:00"
         }
@@ -310,6 +327,7 @@ export const menuCategoriesResponse = {
         "menu_id": "menu-uuid-7",
         "name": "Para Compatir",
         "description": null,
+     "type": "piqueo",
         "display_order": 0,
         "is_active": true,
         "created_at": "2026-02-28T03:28:24.097231+00:00",
@@ -326,6 +344,7 @@ export const menuCategoriesResponse = {
           "image_url": null,
           "is_available": true,
           "display_order": 0,
+          "is_recommended": false,
           "created_at": "2026-02-28T03:28:24.097231+00:00",
           "updated_at": "2026-02-28T03:28:24.097231+00:00"
         },
@@ -339,6 +358,7 @@ export const menuCategoriesResponse = {
           "image_url": null,
           "is_available": true,
           "display_order": 0,
+          "is_recommended": false,
           "created_at": "2026-02-28T03:28:24.097231+00:00",
           "updated_at": "2026-02-28T03:28:24.097231+00:00"
         },
@@ -352,6 +372,7 @@ export const menuCategoriesResponse = {
           "image_url": null,
           "is_available": true,
           "display_order": 0,
+          "is_recommended": false,
           "created_at": "2026-02-28T03:28:24.097231+00:00",
           "updated_at": "2026-02-28T03:28:24.097231+00:00"
         }
@@ -364,6 +385,7 @@ export const menuCategoriesResponse = {
         "menu_id": "menu-uuid-7",
         "name": "Postres",
         "description": null,
+     "type": "postre",
         "display_order": 0,
         "is_active": true,
         "created_at": "2026-02-28T03:28:24.097231+00:00",
@@ -380,6 +402,7 @@ export const menuCategoriesResponse = {
           "image_url": null,
           "is_available": true,
           "display_order": 0,
+          "is_recommended": false,
           "created_at": "2026-02-28T03:28:24.097231+00:00",
           "updated_at": "2026-02-28T03:28:24.097231+00:00"
         },
@@ -393,6 +416,7 @@ export const menuCategoriesResponse = {
           "image_url": null,
           "is_available": true,
           "display_order": 0,
+          "is_recommended": true,
           "created_at": "2026-02-28T03:28:24.097231+00:00",
           "updated_at": "2026-02-28T03:28:24.097231+00:00"
         },
@@ -406,6 +430,7 @@ export const menuCategoriesResponse = {
           "image_url": null,
           "is_available": true,
           "display_order": 0,
+          "is_recommended": false,
           "created_at": "2026-02-28T03:28:24.097231+00:00",
           "updated_at": "2026-02-28T03:28:24.097231+00:00"
         }
@@ -418,6 +443,7 @@ export const menuCategoriesResponse = {
         "menu_id": "menu-uuid-7",
         "name": "Bebidas",
         "description": null,
+     "type": "bebida_fria",
         "display_order": 0,
         "is_active": true,
         "created_at": "2026-02-28T03:28:24.097231+00:00",
@@ -434,6 +460,7 @@ export const menuCategoriesResponse = {
           "image_url": null,
           "is_available": true,
           "display_order": 0,
+          "is_recommended": false,
           "created_at": "2026-02-28T03:28:24.097231+00:00",
           "updated_at": "2026-02-28T03:28:24.097231+00:00"
         },
@@ -447,6 +474,7 @@ export const menuCategoriesResponse = {
           "image_url": null,
           "is_available": true,
           "display_order": 0,
+          "is_recommended": false,
           "created_at": "2026-02-28T03:28:24.097231+00:00",
           "updated_at": "2026-02-28T03:28:24.097231+00:00"
         },
@@ -460,6 +488,7 @@ export const menuCategoriesResponse = {
           "image_url": null,
           "is_available": true,
           "display_order": 0,
+          "is_recommended": false,
           "created_at": "2026-02-28T03:28:24.097231+00:00",
           "updated_at": "2026-02-28T03:28:24.097231+00:00"
         }
@@ -472,6 +501,7 @@ export const menuCategoriesResponse = {
         "menu_id": "menu-uuid-7",
         "name": "Cocteles",
         "description": null,
+     "type": "coctel",
         "display_order": 0,
         "is_active": true,
         "created_at": "2026-02-28T03:28:24.097231+00:00",
@@ -488,6 +518,7 @@ export const menuCategoriesResponse = {
           "image_url": null,
           "is_available": true,
           "display_order": 0,
+          "is_recommended": true,
           "created_at": "2026-02-28T03:28:24.097231+00:00",
           "updated_at": "2026-02-28T03:28:24.097231+00:00"
         },
@@ -501,6 +532,7 @@ export const menuCategoriesResponse = {
           "image_url": null,
           "is_available": true,
           "display_order": 0,
+          "is_recommended": false,
           "created_at": "2026-02-28T03:28:24.097231+00:00",
           "updated_at": "2026-02-28T03:28:24.097231+00:00"
         },
@@ -514,6 +546,7 @@ export const menuCategoriesResponse = {
           "image_url": null,
           "is_available": true,
           "display_order": 0,
+          "is_recommended": false,
           "created_at": "2026-02-28T03:28:24.097231+00:00",
           "updated_at": "2026-02-28T03:28:24.097231+00:00"
         }
@@ -521,7 +554,6 @@ export const menuCategoriesResponse = {
     }
   ]
 };
-
 export const categoryListResponse = {
   "status": "success",
   "data": [
@@ -531,6 +563,7 @@ export const categoryListResponse = {
       "menu_id": "menu-uuid-7",
       "name": "Entradas",
       "description": null,
+     "type": "entrada",
       "display_order": 0,
       "is_active": true,
       "created_at": "2026-02-28T03:28:24.097231+00:00",
@@ -542,6 +575,7 @@ export const categoryListResponse = {
       "menu_id": "menu-uuid-7",
       "name": "Sopas y Ensaladas",
       "description": null,
+     "type": "sopa",
       "display_order": 0,
       "is_active": true,
       "created_at": "2026-02-28T03:28:24.097231+00:00",
@@ -553,6 +587,7 @@ export const categoryListResponse = {
       "menu_id": "menu-uuid-7",
       "name": "Platos de Fondo",
       "description": null,
+     "type": "plato de fondo",
       "display_order": 0,
       "is_active": true,
       "created_at": "2026-02-28T03:28:24.097231+00:00",
@@ -564,6 +599,7 @@ export const categoryListResponse = {
       "menu_id": "menu-uuid-7",
       "name": "Para Compatir",
       "description": null,
+     "type": "piqueo",
       "display_order": 0,
       "is_active": true,
       "created_at": "2026-02-28T03:28:24.097231+00:00",
@@ -575,6 +611,7 @@ export const categoryListResponse = {
       "menu_id": "menu-uuid-7",
       "name": "Postres",
       "description": null,
+     "type": "postre",
       "display_order": 0,
       "is_active": true,
       "created_at": "2026-02-28T03:28:24.097231+00:00",
@@ -586,6 +623,7 @@ export const categoryListResponse = {
       "menu_id": "menu-uuid-7",
       "name": "Bebidas",
       "description": null,
+     "type": "bebida_fria",
       "display_order": 0,
       "is_active": true,
       "created_at": "2026-02-28T03:28:24.097231+00:00",
@@ -597,6 +635,7 @@ export const categoryListResponse = {
       "menu_id": "menu-uuid-7",
       "name": "Cocteles",
       "description": null,
+     "type": "coctel",
       "display_order": 0,
       "is_active": true,
       "created_at": "2026-02-28T03:28:24.097231+00:00",
@@ -604,7 +643,6 @@ export const categoryListResponse = {
     }
   ]
 };
-
 // Legacy Compatibility (if needed)
 export const rootData = {
   user: restaurantResponse.data.user,

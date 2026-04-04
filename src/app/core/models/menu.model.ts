@@ -6,6 +6,7 @@ export interface Category {
   menu_id: string;
   name: string;
   description: string | null;
+  type: string;
   display_order: number;
   is_active: boolean;
   created_at: string;

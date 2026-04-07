@@ -1,0 +1,45 @@
+<!-- Header Premium Pollería -->
+<div class="relative h-[40vh] overflow-hidden mb-10 md:mb-14">
+  <!-- Imagen de fondo -->
+  <img
+    src="/assets/polleria-template/polleria-banner.png"
+    alt="Banner {{ restaurantName() }}"
+    class="absolute inset-0 w-full h-full object-cover object-center"
+  />
+
+  <!-- Overlay degradado -->
+  <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/20"></div>
+
+  <!-- Contenido centrado -->
+  <div class="relative z-10 h-full flex flex-col items-center justify-center px-4 text-center">
+    <!-- Badge -->
+    <div class="flex items-center gap-2 mb-4 animate-pulse">
+      <lucide-icon [img]="Flame" class="w-5 h-5 text-primary"></lucide-icon>
+      <span
+        class="px-4 py-1.5 bg-primary/90 text-secondary rounded-full text-xs font-bold uppercase tracking-widest"
+      >
+        Tradición Peruana
+      </span>
+    </div>
+
+    <!-- Nombre del restaurante -->
+    <h1 class="text-5xl md:text-7xl font-oleo text-white mb-4 drop-shadow-lg">
+      {{ restaurantName() }}
+    </h1>
+
+    <!-- Subtítulo -->
+    <p class="text-lg md:text-xl text-white/80 italic mb-8 max-w-md">Sabor inigualable a la leña</p>
+
+    <!-- Botón Más información -->
+    <a
+      [routerLink]="['./info']"
+      class="group flex items-center gap-3 px-8 py-3 border-2 border-white/80 text-white rounded-full font-semibold uppercase tracking-wider text-sm transition-all duration-300 hover:bg-white hover:text-secondary hover:border-white"
+    >
+      <lucide-icon
+        [img]="Info"
+        class="w-5 h-5 transition-transform group-hover:scale-110"
+      ></lucide-icon>
+      <span>Más información</span>
+    </a>
+  </div>
+</div>

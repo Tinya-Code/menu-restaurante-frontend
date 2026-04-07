@@ -1,5 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject, signal, effect, OnInit } from '@angular/core';
 import { forkJoin } from 'rxjs';
+import { SidebarCart } from '../../share/components/sidebar-cart/sidebar-cart.component';
+import { CartTriggerComponent } from '../../share/components/cart-trigger/cart-trigger.component';
 
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
@@ -47,7 +49,9 @@ import { WhatsAppButton } from '../../share/components/whatsapp-button/whatsapp-
     CategoryNav,
     LucideAngularModule,
     TimeFormatPipe,
-    WhatsAppButton
+    WhatsAppButton, 
+    SidebarCart,
+    CartTriggerComponent
   ],
   templateUrl: './menu.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

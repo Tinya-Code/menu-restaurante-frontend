@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Cart } from '../../../core/services/cart.service';
 import { PrecioPipe } from '../../pipes/precio.pipe';
@@ -16,6 +16,9 @@ import { ModalComponent } from '../modal/modal.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CartTriggerComponent {
+  templateId = input<string | null>();
+  backgroundColor = input<string | null>();
+
   private readonly _cart = inject(Cart);
   private readonly _businessHours = inject(BusinessHoursService);
 

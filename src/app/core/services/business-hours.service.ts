@@ -55,11 +55,12 @@ export class BusinessHoursService {
    */
   private saveRestaurantMetadata(): void {
     const restaurant = this._restaurantService.restaurant();
-    if (restaurant) {
+    const settings = this._restaurantService.settings();
+    if (restaurant && settings) {
       const metadata = {
         id: restaurant.id,
         name: restaurant.name,
-        logo: restaurant.logo_url,
+        logo: settings.logo_url,
         address: restaurant.address,
         businessHours: this.hours(),
         updatedAt: new Date().toISOString()

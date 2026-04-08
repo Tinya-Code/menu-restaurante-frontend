@@ -1,70 +1,119 @@
-<footer class="py-12 border-t-2 border-primary/10 bg-white rounded-t-5xl shadow-2xl overflow-hidden relative">
-  <!-- Decoración de brasas -->
-  <div class="absolute inset-0 opacity-[0.03] pointer-events-none">
-    <div class="flex flex-wrap gap-8 justify-center p-10">
-      @for (i of [1,2,3,4,5,6,7,8]; track i) {
-        <lucide-icon [img]="Flame" class="w-20 h-20 text-primary rotate-12"></lucide-icon>
-      }
-    </div>
-  </div>
-
-  <div class="max-w-7xl mx-auto px-6 relative z-10">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 items-center text-center md:text-left">
-      <!-- Logo y Slogan -->
-      <div class="space-y-4">
-        <div class="flex items-center justify-center md:justify-start gap-3">
-          <div class="w-10 h-10 bg-secondary rounded-xl flex items-center justify-center">
-            <lucide-icon [img]="Flame" class="w-6 h-6 text-primary"></lucide-icon>
+<footer class="md:mt-32 relative">
+  <!-- Main Footer Container -->
+  <div class="bg-secondary relative overflow-visible">
+    <!-- Content Grid -->
+    <div class="max-w-7xl mx-auto px-6 pb-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start mb-6 md:mb-0">
+        <!-- Left: Schedule -->
+        <div class="order-2 md:order-1 flex flex-col items-center self-center text-center md:mt-4">
+          <div class="flex md:items-center md:justify-center justify-start gap-2 mb-4">
+            <h3 class="font-open-sans text-sm font-bold uppercase tracking-wider text-white/60">
+              NUESTRO HORARIO
+            </h3>
           </div>
-          <span class="text-2xl font-bungee text-secondary tracking-tight">POLLERÍA</span>
+
+          <div
+            class="flex flex-col gap-4 lg:flex-row md:justify-center justify-start font-open-sans text-white/90 text-sm"
+          >
+            <div class="flex items-center gap-1">
+              <lucide-icon [img]="Clock" class="w-4 h-4"></lucide-icon>
+              <div class="flex lg:flex-row flex-col items-start">
+                <span>Lun - Jue: </span>
+
+                <span>10 am - 9 pm</span>
+              </div>
+            </div>
+            <div class="flex items-center gap-1">
+              <lucide-icon [img]="Clock" class="w-4 h-4"></lucide-icon>
+              <div class="flex lg:flex-row flex-col items-start">
+                <span>Vie - Dom: </span>
+                <span>11 am - 11 pm</span>
+              </div>
+            </div>
+          </div>
         </div>
-        <p class="text-muted text-sm italic">El sabor tradicional a la leña que une a la familia peruana en cada bocado.</p>
-      </div>
 
-      <!-- Social Links -->
-      <div class="flex flex-col items-center gap-6">
-        <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-secondary opacity-40">Síguenos en redes</span>
-        <div class="flex items-center gap-6">
-          @if (socialMediaSafe(); as sm) {
-            @if (sm.facebook) {
-              <a [href]="sm.facebook" target="_blank" class="w-12 h-12 flex items-center justify-center rounded-2xl bg-primary/10 text-primary hover:bg-primary hover:text-secondary transition-all shadow-sm">
-                <lucide-icon [img]="Facebook" class="w-6 h-6"></lucide-icon>
-              </a>
-            }
-            @if (sm.instagram) {
-              <a [href]="sm.instagram" target="_blank" class="w-12 h-12 flex items-center justify-center rounded-2xl bg-primary/10 text-primary hover:bg-primary hover:text-secondary transition-all shadow-sm">
-                <lucide-icon [img]="Instagram" class="w-6 h-6"></lucide-icon>
-              </a>
-            }
-            @if (sm.twitter) {
-              <a [href]="sm.twitter" target="_blank" class="w-12 h-12 flex items-center justify-center rounded-2xl bg-primary/10 text-primary hover:bg-primary hover:text-secondary transition-all shadow-sm">
-                <lucide-icon [img]="Twitter" class="w-6 h-6"></lucide-icon>
-              </a>
-            }
-          }
+        <!-- Center: Food Image -->
+        <div class="order-1 md:order-2 relative flex justify-center mt-0">
+          <div class="relative">
+            <img
+              src="/assets/polleria-template/footer.png"
+              alt="Plato destacado"
+              class="w-64 md:w-80 object-contain drop-shadow-2xl"
+            />
+          </div>
         </div>
-      </div>
 
-      <!-- Horario / Info -->
-      <div class="space-y-4 md:text-right">
-        @if (isOpen()) {
-          <div class="inline-block px-4 py-2 bg-secondary text-primary rounded-xl font-bungee text-sm -rotate-2">
-            ABIERTO HOY
+        <!-- Right: Social Media -->
+        <div
+          class="order-3 md:order-3 flex flex-col items-center self-center text-center md:text-right"
+        >
+          <div class="flex items-center justify-center md:justify-end gap-2 mb-4 md:mt-4">
+            <h3 class="font-open-sans text-sm font-bold uppercase tracking-wider text-white/60">
+              SÍGUENOS EN REDES
+            </h3>
           </div>
-        } @else {
-          <div class="inline-block px-4 py-2 bg-red-500 text-white rounded-xl font-bungee text-sm -rotate-2">
-            CERRADO AHORA
+
+          <div class="flex flex-col lg:flex-row items-start justify-center gap-4">
+            @if (socialMediaSafe(); as sm) { @if (sm.instagram) {
+            <a
+              [href]="
+                sm.instagram.startsWith('http')
+                  ? sm.instagram
+                  : 'https://instagram.com/' + sm.instagram.replace('@', '')
+              "
+              target="_blank"
+              class="flex items-center gap-2 text-white/80 hover:text-primary transition-colors group"
+            >
+              <lucide-icon [img]="Instagram" class="w-4 h-4"></lucide-icon>
+              <span class="font-open-sans text-sm">{{ getSocialHandle(sm.instagram) }}</span>
+            </a>
+            } @if (sm.facebook) {
+            <a
+              [href]="
+                sm.facebook.startsWith('http') ? sm.facebook : 'https://facebook.com/' + sm.facebook
+              "
+              target="_blank"
+              class="flex items-center gap-2 text-white/80 hover:text-primary transition-colors group"
+            >
+              <lucide-icon [img]="Facebook" class="w-4 h-4"></lucide-icon>
+              <span class="font-open-sans text-sm">{{ getSocialHandle(sm.facebook) }}</span>
+            </a>
+            } @if (sm.tiktok) {
+            <a
+              [href]="
+                sm.tiktok.startsWith('http')
+                  ? sm.tiktok
+                  : 'https://tiktok.com/@' + sm.tiktok.replace('@', '')
+              "
+              target="_blank"
+              class="flex items-center gap-2 text-white/80 hover:text-primary transition-colors group"
+            >
+              <lucide-icon [img]="Tiktok" class="w-4 h-4"></lucide-icon>
+              <span class="font-open-sans text-sm">{{ getSocialHandle(sm.tiktok) }}</span>
+            </a>
+            } }
           </div>
-        }
-        
-        @if (todayHours(); as schedule) {
-          <span class="text-xs font-medium text-secondary/60">Hoy: {{ schedule.open | timeFormat }} - {{ schedule.close | timeFormat }}</span>
-        }
+        </div>
       </div>
     </div>
 
-    <div class="mt-12 pt-8 border-t border-dashed border-primary/20 text-center">
-      <p class="text-[10px] font-bold text-muted uppercase tracking-[0.2em]">&copy; 2024 Restaurante App - Sabor & Tradición</p>
+    <!-- Bottom Bar -->
+    <div class="border-t border-white/10 mb-20 md:mb-0">
+      <div class="max-w-7xl mx-auto px-6 py-4">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+          <!-- Copyright -->
+          <p class="font-open-sans text-sm text-white/50">© Copyright {{ currentYear() }}</p>
+
+          <!-- Logo -->
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
+              <lucide-icon [img]="ChefHat" class="w-6 h-6 text-secondary"></lucide-icon>
+            </div>
+            <span class="font-oleo text-xl text-white/80">{{ restaurantName() }}</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </footer>

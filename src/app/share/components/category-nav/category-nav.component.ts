@@ -1,4 +1,12 @@
-import { ChangeDetectionStrategy, Component, ElementRef, viewChild, input, output, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  viewChild,
+  input,
+  output,
+  signal,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { LucideAngularModule, ChevronLeft, ChevronRight } from 'lucide-angular';
@@ -8,45 +16,53 @@ import { LucideAngularModule, ChevronLeft, ChevronRight } from 'lucide-angular';
   standalone: true,
   imports: [CommonModule, LucideAngularModule],
   template: `
-    <div class="sticky top-0 z-40 bg-[var(--color-background)]/90 backdrop-blur-md border-b border-[var(--color-primary)]/10 shadow-sm py-4 px-4 group/nav">
+    <div
+      class="sticky top-0 z-40 bg-background/90 backdrop-blur-md border-b border-primary/10 shadow-sm py-4 px-4 group/nav"
+    >
       <div class="max-w-7xl mx-auto relative flex items-center">
-        
         <!-- Flecha Izquierda -->
-        <button (click)="scrollAmount(-200)"
-                class="absolute -left-2 z-10 p-2 bg-white/80 rounded-full shadow-md text-primary opacity-0 group-hover/nav:opacity-100 transition-opacity hidden md:flex items-center justify-center hover:bg-white active:scale-95"
-                [class.!flex]="canScrollLeft()">
+        <button
+          (click)="scrollAmount(-200)"
+          class="absolute -left-2 z-10 p-2 bg-white/80 rounded-full shadow-md text-primary opacity-0 group-hover/nav:opacity-100 transition-opacity hidden md:flex items-center justify-center hover:bg-white active:scale-95"
+          [class.!flex]="canScrollLeft()"
+        >
           <lucide-icon [img]="ChevronLeft" class="w-5 h-5"></lucide-icon>
         </button>
 
         <!-- Contenedor Scrollable -->
-        <div #scrollContainer
-             (mousedown)="onMouseDown($event)"
-             (mouseleave)="onMouseLeave()"
-             (mouseup)="onMouseUp()"
-             (mousemove)="onMouseMove($event)"
-             (scroll)="updateScrollState()"
-             class="flex items-center gap-3 overflow-x-auto select-none cursor-grab active:cursor-grabbing scroll-smooth
-                    [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <div
+          #scrollContainer
+          (mousedown)="onMouseDown($event)"
+          (mouseleave)="onMouseLeave()"
+          (mouseup)="onMouseUp()"
+          (mousemove)="onMouseMove($event)"
+          (scroll)="updateScrollState()"
+          class="flex items-center gap-3 overflow-x-auto select-none cursor-grab active:cursor-grabbing scroll-smooth
+                    [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        >
           @for (category of categories(); track category.id) {
-            <button (click)="scrollToCategory(category.id)"
-                    class="whitespace-nowrap px-6 py-2.5 rounded-full text-sm font-bold uppercase tracking-wider transition-all
+            <button
+              (click)="scrollToCategory(category.id)"
+              class="whitespace-nowrap px-6 py-2.5 rounded-full text-sm font-bold uppercase tracking-wider transition-all
                            hover:bg-primary/20 hover:text-primary active:scale-95"
-                    [class.bg-primary]="activeCategoryId() === category.id"
-                    [class.text-white]="activeCategoryId() === category.id"
-                    [class.bg-secondary/5]="activeCategoryId() !== category.id"
-                    [class.text-secondary]="activeCategoryId() !== category.id">
+              [class.bg-primary]="activeCategoryId() === category.id"
+              [class.text-white]="activeCategoryId() === category.id"
+              [class.bg-secondary/5]="activeCategoryId() !== category.id"
+              [class.text-secondary]="activeCategoryId() !== category.id"
+            >
               {{ category.name }}
             </button>
           }
         </div>
 
         <!-- Flecha Derecha -->
-        <button (click)="scrollAmount(200)"
-                class="absolute -right-2 z-10 p-2 bg-white/80 rounded-full shadow-md text-primary opacity-0 group-hover/nav:opacity-100 transition-opacity hidden md:flex items-center justify-center hover:bg-white active:scale-95"
-                [class.!flex]="canScrollRight()">
+        <button
+          (click)="scrollAmount(200)"
+          class="absolute -right-2 z-10 p-2 bg-white/80 rounded-full shadow-md text-primary opacity-0 group-hover/nav:opacity-100 transition-opacity hidden md:flex items-center justify-center hover:bg-white active:scale-95"
+          [class.!flex]="canScrollRight()"
+        >
           <lucide-icon [img]="ChevronRight" class="w-5 h-5"></lucide-icon>
         </button>
-
       </div>
     </div>
   `,
@@ -82,7 +98,7 @@ export class CategoryNav {
     const el = this.scrollContainer()?.nativeElement;
     if (el) {
       this.canScrollLeft.set(el.scrollLeft > 0);
-      this.canScrollRight.set(el.scrollLeft < (el.scrollWidth - el.clientWidth - 5));
+      this.canScrollRight.set(el.scrollLeft < el.scrollWidth - el.clientWidth - 5);
     }
   }
 
@@ -131,7 +147,7 @@ export class CategoryNav {
 
       window.scrollTo({
         top: offsetPosition,
-        behavior: 'smooth'
+        behavior: 'smooth',
       });
     }
     this.categorySelect.emit(id);

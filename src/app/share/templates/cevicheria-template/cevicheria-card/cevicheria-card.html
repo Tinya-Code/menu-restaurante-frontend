@@ -1,17 +1,42 @@
-<div class="group flex justify-between items-center gap-4 py-4  hover:bg-primary/[0.02] transition-colors duration-300">
- 
-    <!-- Nombre del Producto -->
-    <h3 class="text-lg md:text-xl font-bungee text-secondary group-hover:text-primary transition-colors flex-1 min-w-0 truncate">
+<article class="group flex items-center gap-4 py-3 hover:bg-primary/5 transition-colors duration-300">
+
+  <!-- Info -->
+  <header class="flex flex-col flex-1 min-w-0">
+    <h3 class="text-base font-bungee text-secondary truncate group-hover:text-primary transition-colors">
       {{ product().name }}
     </h3>
-    <!-- Precio -->
-    <p class="text-xl font-bungee text-secondary">
+
+    <p class="text-sm text-gray-500 truncate">
+      {{ product().description }}
+    </p>
+  </header>
+
+  <!-- Precio + acción juntos -->
+  <footer class="flex items-center gap-3 whitespace-nowrap">
+
+    <p class="text-base font-bungee text-secondary">
       {{ product().price | precio }}
     </p>
 
+    <button
+      (click)="addToCart()"
+      class="group w-11 h-11 flex items-center justify-center
+            rounded-full border-2 border-[#0B2C4D]
+            text-[#0B2C4D] bg-white
+            transition-all duration-300
+            hover:bg-[#0B2C4D] hover:text-white
+            hover:scale-110 active:scale-95
+             shadow-sm hover:shadow-md">
+      @if (!isAdding()) {
+        <lucide-icon [img]="plus" class="w-5 h-5"></lucide-icon>
+      } @else {
+        <lucide-icon [img]="check" class="w-5 h-5 text-green-500"></lucide-icon>
+      }
 
-    <button class="flex items-center gap-2 px-2 py-2 bg-secondary text-primary rounded-full text-[10px] font-black uppercase tracking-widest hover:bg-primary hover:text-white transition-all transform hover:scale-105 active:scale-95 shadow-md">
-           <lucide-icon [img]="plus" class="w-4 h-4 text-primary shadow-marine"></lucide-icon>
+      <span class="text-lg font-semibold leading-none"></span>
+
     </button>
 
-</div>
+  </footer>
+
+</article>

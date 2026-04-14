@@ -1,24 +1,59 @@
 <!-- Backdrop -->
-<div class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-[1000] transition-all duration-300 pointer-events-none opacity-0 invisible"
-     [class.!opacity-100]="isOpen()" 
-     [class.!visible]="isOpen()"
-     [class.!pointer-events-auto]="isOpen()"
-     (click)="onClose()"></div>
+<button
+  aria-label="Cerrar modal"
+  class="fixed inset-0 bg-black/30 backdrop-blur-[6px] z-1000 transition-all duration-300"
+  [class.opacity-0]="!isOpen()" 
+  [class.pointer-events-none]="!isOpen()"
+  (click)="onClose()">
+</button>
 
-<!-- Modal Container -->
-<div class="fixed bottom-0 left-0 right-0 bg-white rounded-t-[2.5rem] z-[1001] max-h-[92vh] flex flex-col shadow-[-20px_0_50px_rgba(0,0,0,0.1)] p-6 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] translate-y-full"
-     [class.!translate-y-0]="isOpen()">
-  
-  <!-- Header -->
-  <div class="px-6 py-4 flex items-center justify-between border-b border-slate-100">
-    <h2 class="font-bungee text-slate-800 text-xl overflow-hidden text-ellipsis whitespace-nowrap">{{ title() }}</h2>
-    <button (click)="onClose()" class="p-2 rounded-full text-slate-400 hover:bg-slate-100 hover:text-slate-800 transition-all">
-      <lucide-icon [img]="X" class="w-6 h-6"></lucide-icon>
-    </button>
-  </div>
+<!-- Modal -->
+<section 
+  role="dialog"
+  aria-modal="true"
+  class="fixed bottom-0 left-0 right-0 z-1001 flex justify-center pointer-events-none">
 
-  <!-- Content -->
-  <div class="grow overflow-y-auto p-6 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-slate-200 hover:scrollbar-thumb-slate-300">
-    <ng-content></ng-content>
-  </div>
-</div>
+  <article 
+    class="w-full max-w-2xl bg-white rounded-t-[28px] shadow-2xl 
+           transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
+           pointer-events-auto
+           translate-y-full"
+    [class.!translate-y-0]="isOpen()">
+
+    <!-- Handle (decorativo) -->
+    <header class="flex flex-col items-center pt-3">
+
+      <span 
+        aria-hidden="true"
+        class="w-12 h-1.5 bg-slate-300 rounded-full">
+      </span>
+
+      <nav class="w-full flex items-center justify-between px-5 py-3">
+
+        <h2 class="font-bungee text-base text-slate-800 truncate">
+          {{ title() }}
+        </h2>
+
+        <button 
+          type="button"
+          aria-label="Cerrar"
+          (click)="onClose()" 
+          class="p-2 rounded-full text-slate-400 hover:bg-slate-100 hover:text-slate-700 transition">
+          <lucide-icon [img]="X" class="w-5 h-5"></lucide-icon>
+        </button>
+
+      </nav>
+
+    </header>
+
+    <hr class="border-slate-100" />
+
+    <!-- Content -->
+    <main 
+      class="max-h-[75vh] overflow-y-auto px-5 py-4 
+             scrollbar-thin scrollbar-thumb-slate-200 hover:scrollbar-thumb-slate-300">
+      <ng-content></ng-content>
+    </main>
+
+  </article>
+</section>

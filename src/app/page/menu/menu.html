@@ -9,47 +9,63 @@
       (categorySelect)="activeCategoryId.set($event)">
     </app-category-nav>
 
-    <!-- Categorías y Productos (Plantillas Temáticas) -->
-    <main class="max-w-7xl mx-auto px-4 md:px-0 pt-0">
-      <!-- Renderizado Condicional de Plantillas Temáticas -->
-      @switch (restaurant.template_id) {
-        @case (TEMPLATE_IDS.POLLERIA) {
-          <app-polleria-template 
-            [categories]="menuService.categories()" 
-            [restaurantName]="restaurant.name"
-            (productClick)="viewDetail($event)">
-          </app-polleria-template>
+    <section class="relative min-h-screen">
+
+      <!-- Fondo (sello de agua) -->
+      <img 
+        src="/images/bg-cevicheria.png"
+        alt=""
+        aria-hidden="true"
+        class="absolute inset-0 w-full h-full object-cover opacity-50 pointer-events-none" />
+
+      <!-- Capa suave -->
+      <aside 
+        aria-hidden="true"
+        class="absolute inset-0 bg-white/80">
+      </aside>
+
+      <!-- Categorías y Productos (Plantillas Temáticas) -->
+      <main class="relative z-10 max-w-7xl mx-auto px-4 md:px-0 pt-0">
+        <!-- Renderizado Condicional de Plantillas Temáticas -->
+        @switch (restaurant.template_id) {
+          @case (TEMPLATE_IDS.POLLERIA) {
+            <app-polleria-template 
+              [categories]="menuService.categories()" 
+              [restaurantName]="restaurant.name"
+              (productClick)="viewDetail($event)">
+            </app-polleria-template>
+          }
+          @case (TEMPLATE_IDS.CHIFA) {
+            <app-chifa-template 
+              [categories]="menuService.categories()" 
+              [restaurantName]="restaurant.name"
+              (productClick)="viewDetail($event)">
+            </app-chifa-template>
+          }
+          @case (TEMPLATE_IDS.CEVICHERIA) {
+            <app-cevicheria-template 
+              [categories]="menuService.categories()" 
+              [restaurantName]="restaurant.name"
+              (productClick)="viewDetail($event)">
+            </app-cevicheria-template>
+          }
+          @case (TEMPLATE_IDS.COMIDA_RAPIDA) {
+            <app-comida-rapida-template 
+              [categories]="menuService.categories()" 
+              [restaurantName]="restaurant.name"
+              (productClick)="viewDetail($event)">
+            </app-comida-rapida-template>
+          }
+          @default {
+            <app-polleria-template 
+              [categories]="menuService.categories()" 
+              [restaurantName]="restaurant.name"
+              (productClick)="viewDetail($event)">
+            </app-polleria-template>
+          }
         }
-        @case (TEMPLATE_IDS.CHIFA) {
-          <app-chifa-template 
-            [categories]="menuService.categories()" 
-            [restaurantName]="restaurant.name"
-            (productClick)="viewDetail($event)">
-          </app-chifa-template>
-        }
-        @case (TEMPLATE_IDS.CEVICHERIA) {
-          <app-cevicheria-template 
-            [categories]="menuService.categories()" 
-            [restaurantName]="restaurant.name"
-            (productClick)="viewDetail($event)">
-          </app-cevicheria-template>
-        }
-        @case (TEMPLATE_IDS.COMIDA_RAPIDA) {
-          <app-comida-rapida-template 
-            [categories]="menuService.categories()" 
-            [restaurantName]="restaurant.name"
-            (productClick)="viewDetail($event)">
-          </app-comida-rapida-template>
-        }
-        @default {
-          <app-polleria-template 
-            [categories]="menuService.categories()" 
-            [restaurantName]="restaurant.name"
-            (productClick)="viewDetail($event)">
-          </app-polleria-template>
-        }
-      }
-    </main>
+      </main>
+    </section>
 
     <!-- Product Detail Modal -->
     <app-modal [isOpen]="isModalOpen()" [title]="selectedProduct()?.name || ''" (close)="closeModal()">
@@ -125,7 +141,7 @@
     <div class="bg-white border-b border-gray-100 p-4 sticky top-0 z-30">
       <div class="max-w-7xl mx-auto flex items-center gap-4 overflow-x-hidden">
         @for (i of [1,2,3,4,5,6]; track i) {
-          <div class="h-10 w-24 bg-gray-200 rounded-full animate-pulse min-w-[96px]"></div>
+          <div class="h-10 w-24 bg-gray-200 rounded-full animate-pulse min-w-24"></div>
         }
       </div>
     </div>

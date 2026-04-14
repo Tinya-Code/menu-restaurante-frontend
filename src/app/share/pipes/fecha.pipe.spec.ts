@@ -1,4 +1,4 @@
-import { FechaPipe } from './fecha-pipe';
+import { FechaPipe } from './fecha.pipe';
 
 describe('FechaPipe', () => {
   let pipe: FechaPipe;

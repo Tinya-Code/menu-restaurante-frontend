@@ -7,7 +7,7 @@ import { CartTriggerComponent } from './share/components/cart-trigger/cart-trigg
   selector: 'app-root',
   imports: [RouterOutlet, SidebarCart, CartTriggerComponent],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrl: './app.css',
 })
 export class App {
   protected readonly title = signal('menu-restaurante-frontend');

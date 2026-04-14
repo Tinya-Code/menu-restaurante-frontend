@@ -1,0 +1,63 @@
+<footer class="mt-24 py-16 bg-black border-t-8 border-primary rounded-t-5xl overflow-hidden relative text-white">
+
+
+  <!-- Imagen de Fondo (Letras) -->
+  <div class="absolute inset-0 opacity-30 pointer-events-none select-none">
+    <div class="w-full h-full bg-no-repeat bg-size-[4700px] bg-center md:bg-cover " style="background-image: url('template-chifa-images/letras-fondo.svg'); "></div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-10 relative z-10">
+    <div class="flex flex-col items-center text-center gap-12">
+      <!-- Logo Chifa -->
+      <div class="space-y-4">
+        <div class="flex items-center justify-center gap-5">
+          <div class="w-16 h-1 bg-primary rounded-full"></div>
+          <div class="w-20 h-20 bg-primary rounded-2xl flex items-center  justify-center shadow-lg transform rotate-45 group transition-transform duration-700">
+            <lucide-icon [img]="Utensils" class="w-10 h-10 text-white -rotate-45"></lucide-icon>
+          </div>
+          <div class="w-16 h-1 bg-primary rounded-full"></div>
+        </div>
+        <h2 class="text-4xl md:text-5xl font-bungee text-primary tracking-tighter">CHIFA TRADICIÓN</h2>
+      </div>
+
+      <!-- Contacto & Social -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-20 w-full max-w-4xl pt-10 border-t border-primary/20">
+        <div class="space-y-6">
+          <span class="text-xs font-black uppercase tracking-[0.4em] text-primary">Reservaciones y Horarios</span>
+          <div class="flex items-center justify-center gap-4 text-2xl font-bungee">
+            <lucide-icon [img]="Phone" class="w-6 h-6 text-primary"></lucide-icon>
+            (01) 456-7890
+          </div>
+          
+          @if (todayHours(); as schedule) {
+            <p class="text-md text-neutral-400 uppercase tracking-widest">Hoy: {{ schedule.open | timeFormat }} - {{ schedule.close | timeFormat }}</p>
+          }
+          <p class="text-neutral-400 text-sm italic">La mejor fusión peruano-china en tu mesa.</p>
+        </div>
+
+        <div class="space-y-6">
+          <span class="text-xs font-black uppercase tracking-[0.4em] text-primary">Nuestras Redes</span>
+          <div class="flex items-center justify-center gap-8">
+             @if (socialMediaSafe(); as sm) {
+               @if (sm.facebook) {
+                 <a [href]="sm.facebook" target="_blank" class="group">
+                    <lucide-icon [img]="Facebook" class="w-8 h-8 text-neutral-500 group-hover:text-primary transition-colors"></lucide-icon>
+                 </a>
+               }
+               @if (sm.instagram) {
+                 <a [href]="sm.instagram" target="_blank" class="group">
+                    <lucide-icon [img]="Instagram" class="w-8 h-8 text-neutral-500 group-hover:text-primary transition-colors"></lucide-icon>
+                 </a>
+               }
+             }
+          </div>
+        </div>
+      </div>
+
+      <!-- Copyright -->
+      <div class="mt-20 opacity-40 hover:opacity-100 transition-opacity">
+        <p class="text-[10px] font-bold uppercase tracking-[0.5em] text-primary">Diseño Imperial &copy; 2024</p>
+      </div>
+    </div>
+  </div>
+</footer>

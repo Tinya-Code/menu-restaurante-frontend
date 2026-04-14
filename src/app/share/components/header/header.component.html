@@ -1,17 +1,122 @@
-<header class="bg-secondary text-primary p-8 md:p-16 mb-8 relative overflow-hidden">
-  <div class="absolute inset-0 bg-primary/5 pattern-grid-lg opacity-20"></div>
-  <div class="max-w-5xl mx-auto relative z-10 flex flex-col md:flex-row items-center gap-6">
-    <div class="w-24 h-24 bg-primary text-secondary rounded-3xl flex items-center justify-center shadow-premium-lg scale-110">
-      <lucide-icon [img]="BookOpen" class="w-12 h-12"></lucide-icon>
+<nav class="bg-secondary text-xs backdrop-blur-md text-primary sticky top-0 z-50 border-b border-primary/10">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div class="flex justify-between items-center ">
+      
+      <!-- Logo & Name -->
+      <div class="flex items-center gap-4">
+        <div class="relative group cursor-pointer" routerLink="/">
+ 
+          <h1 class="text-2xl font-bungee leading-tight tracking-tight text-primary">
+          tu gourmet
+          </h1>
+        </div>
+      </div>
+
+      <!-- Desktop Navigation -->
+      <div class="hidden md:flex items-center gap-8">
+        <a routerLink="/" class=" font-bold uppercase tracking-widest hover:text-orange-400 transition-colors">Menú</a>
+        <a routerLink="/register" class="font-bold uppercase tracking-widest hover:text-orange-400 transition-colors">Planes</a>
+        
+        <!-- User Area -->
+        <div class="relative">
+          <button (click)="toggleUserDropdown()" 
+            class="flex items-center gap-3 bg-primary/10 hover:bg-primary/20 px-4 py-3 pr-4 rounded-sm transition-all border border-primary/20">
+   <lucide-icon [img]="token() ? User : LogIn" class="w-6 h-6"></lucide-icon>
+
+            <span class=" font-bold uppercase tracking-wider">{{ token() ? 'Mi Cuenta' : 'Registrarse' }}</span>
+            <lucide-icon [img]="ChevronDown" class="w-4 h-4 transition-transform duration-300" [class.rotate-180]="isUserDropdownOpen()"></lucide-icon>
+          </button>
+
+          <!-- Dropdown -->
+          @if (isUserDropdownOpen()) {
+            <div 
+              class="absolute right-0 mt-3 w-64 bg-secondary border border-primary/20 rounded-sm shadow-premium-lg overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
+              <div class="p-4 bg-primary/5 border-b border-primary/10">
+                <p class="text-xs uppercase tracking-widest opacity-50 font-bold mb-1">Acciones rápidas</p>
+              </div>
+              
+              <div class="p-2 space-y-1">
+                @if (!token()) {
+                  <button (click)="signInWithGoogle()"
+                    class="w-full flex items-center gap-4 p-4 hover:bg-primary/10 rounded-2xl transition-all group">
+                    <div class="p-2 bg-white rounded-lg shadow-sm group-hover:scale-110 transition-transform">
+                      <img src="https://www.google.com/favicon.ico" class="w-5 h-5" alt="Google">
+                    </div>
+                    <div class="text-left">
+                      <p class="font-bold text-sm">Regístrate con Google</p>
+                      <p class="text-[10px] opacity-70">Es rápido y seguro</p>
+                    </div>
+                  </button>
+                }
+
+                @if (token()) {
+                  <button routerLink="/register"
+                    class="w-full flex items-center gap-4 p-4 hover:bg-primary/10 rounded-2xl transition-all group">
+                    <lucide-icon [img]="Rocket" class="w-5 h-5 text-orange-400"></lucide-icon>
+                    <div class="text-left">
+                      <p class="font-bold text-sm">Configura tu Menú</p>
+                    </div>
+                  </button>
+                }
+
+                @if (token()) {
+                  <button (click)="logout()"
+                    class="w-full flex items-center gap-4 p-4 hover:bg-red-500/10 text-red-500 rounded-2xl transition-all group">
+                    <lucide-icon [img]="LogOut" class="w-5 h-5"></lucide-icon>
+                    <p class="font-bold text-sm">Cerrar Sesión</p>
+                  </button>
+                }
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+
+      <!-- Mobile Menu Toggle -->
+      <div class="md:hidden flex items-center">
+        <button (click)="toggleMenu()" class="p-2 text-primary hover:bg-primary/10 rounded-xl transition-colors">
+          <lucide-icon [img]="isMenuOpen() ? X : Menu" class="w-8 h-8"></lucide-icon>
+        </button>
+      </div>
     </div>
-    <div class="text-center md:text-left">
-      <h1 class="text-3xl md:text-5xl font-bungee leading-tight mb-2">
-        {{ name() }}
-      </h1>
-      <p class="font-oleo text-xl opacity-80">Explora nuestro delicioso menú</p>
-    </div>
-    <a routerLink="/" class="md:ml-auto text-xs font-bold uppercase tracking-widest bg-primary/20 py-2 px-4 rounded-full hover:bg-primary/30 transition-colors">
-      ← Volver a Inicio
-    </a>
   </div>
-</header>
+
+  <!-- Mobile Menu -->
+  @if (isMenuOpen()) {
+    <div 
+      class="md:hidden bg-secondary border-t border-primary/10 animate-in slide-in-from-top duration-300">
+      <div class="p-6 space-y-6">
+        <div class="grid grid-cols-2 gap-4">
+          <a routerLink="/" (click)="toggleMenu()" class="bg-primary/5 p-4 rounded-2xl text-center group active:scale-95 transition-all">
+            <lucide-icon [img]="BookOpen" class="w-6 h-6 mx-auto mb-2 opacity-60"></lucide-icon>
+            <span class="text-xs font-bold uppercase tracking-widest">Menú</span>
+          </a>
+          <a routerLink="/register" (click)="toggleMenu()" class="bg-primary/5 p-4 rounded-2xl text-center group active:scale-95 transition-all">
+            <lucide-icon [img]="Rocket" class="w-6 h-6 mx-auto mb-2 opacity-60"></lucide-icon>
+            <span class="text-xs font-bold uppercase tracking-widest">Planes</span>
+          </a>
+        </div>
+
+        <div class="bg-primary/5 p-2 rounded-3xl border border-primary/10">
+          @if (!token()) {
+            <button (click)="signInWithGoogle()"
+              class="w-full flex items-center gap-4 p-4 bg-primary text-secondary rounded-2xl shadow-lg active:scale-95 transition-all">
+              <div class="p-1.5 bg-white rounded-lg">
+                <img src="https://www.google.com/favicon.ico" class="w-5 h-5" alt="Google">
+              </div>
+              <span class="font-bold tracking-tight">Regístrate con Google</span>
+            </button>
+          }
+
+          @if (token()) {
+            <button (click)="logout()"
+              class="w-full flex items-center gap-4 p-4 text-red-500 font-bold justify-center transition-all">
+              <lucide-icon [img]="LogOut" class="w-5 h-5"></lucide-icon>
+              Cerrar Sesión
+            </button>
+          }
+        </div>
+      </div>
+    </div>
+  }
+</nav>

@@ -6,9 +6,8 @@
 }
 
 <!-- Sidebar Drawer -->
-<div class="fixed top-0 right-0 h-full w-full max-w-md z-60 shadow-2xl flex flex-col transition-transform duration-500 ease-out transition-colors duration-500"
+<div class="fixed top-0 bg-se bg-white right-0 h-full w-full max-w-md z-60 shadow-2xl flex flex-col transition-transform duration-500 ease-out transition-colors duration-500"
      [ngClass]="'theme-' + templateId()"
-     [style.backgroundColor]="backgroundColor()"
      [class.translate-x-0]="isOpen()"
      [class.translate-x-full]="!isOpen()">
   
@@ -20,9 +19,9 @@
           <lucide-icon [img]="ArrowLeft" class="w-5 h-5 text-secondary"></lucide-icon>
         </button>
       }
-      <h2 class="text-xl font-bungee text-secondary">{{ showCheckout() ? 'Finalizar Pedido' : 'Tu Carrito' }}</h2>
+      <h2 class="text-xl font-display text-secondary">{{ showCheckout() ? 'Finalizar Pedido' : 'Tu Carrito' }}</h2>
       @if (!showCheckout()) {
-        <span class="bg-primary/20 text-secondary px-2 py-0.5 rounded-full text-xs font-bold">{{ count() }}</span>
+        <span class="bg-primary text-white px-2 py-0.5 rounded-full text-xs font-body font-semibold">{{ count() }}</span>
       }
     </div>
     <button (click)="close()" 
@@ -75,7 +74,7 @@
 
   <!-- Footer (Solo en vista de carrito) -->
   @if (!isEmpty() && !showCheckout()) {
-    <div class="p-6 bg-white border-t border-gray-100 shadow-[0_-10px_20px_-10px_rgba(0,0,0,0.05)]">
+    <div class="p-6 bg-white border-t border-gray-100 ">
       <div class="space-y-3 mb-6">
         <div class="flex justify-between items-center text-sm font-medium text-muted">
           <span>Subtotal</span>
@@ -83,14 +82,14 @@
         </div>
 
         <div class="flex justify-between items-center pt-3 border-t border-gray-0">
-          <span class="text-lg font-bold text-secondary uppercase tracking-tight">Total</span>
-          <span class="text-2xl font-bungee text-accent">{{ total() | precio }}</span>
+          <span class="text-lg font-bold  text-secondary uppercase tracking-tight">Total</span>
+          <span class="text-2xl font-body font-bold text-primary">{{ total() | precio }}</span>
         </div>
       </div>
 
       <div class="flex flex-col gap-3">
         <button (click)="checkout()" 
-                class="w-full bg-secondary text-primary py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-primary/10 hover:scale-[1.01] active:scale-[0.99] transition-all flex items-center justify-center gap-2">
+                class="w-full bg-secondary text-white py-4 rounded-sm font-bold text-lg shadow-lg hover:shadow-primary/10 hover:scale-[1.01] active:scale-[0.99] transition-all flex items-center justify-center gap-2">
           <span>Finalizar Pedido</span>
           <lucide-icon [img]="ArrowRight" class="w-5 h-5"></lucide-icon>
         </button>

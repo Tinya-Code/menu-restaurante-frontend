@@ -1,11 +1,9 @@
 /**
- * Constantes de configuración de la API.
- */
-/**
  * Constantes de configuración de la API y el Proyecto.
  */
+import { environment } from '../../../environments/environment';
 export const API_CONSTANTS = {
-  BASE_URL: 'https://api.menu-smart.com/api/v1', // URL base de producción/staging
+  BASE_URL: environment.apiURL,
   ENDPOINTS: {
     RESTAURANTE: '/restaurant',
     MENU: '/menu-categories',

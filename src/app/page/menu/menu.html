@@ -10,7 +10,7 @@
     </app-category-nav>
 
     <!-- Categorías y Productos (Plantillas Temáticas) -->
-    <main class="max-w-7xl mx-auto px-4 md:px-0 pt-0">
+    <main class="max-w-7xl mx-auto px-4">
       <!-- Renderizado Condicional de Plantillas Temáticas -->
       @switch (restaurant.template_id) {
         @case (TEMPLATE_IDS.POLLERIA) {
@@ -24,7 +24,8 @@
           <app-chifa-template 
             [categories]="menuService.categories()" 
             [restaurantName]="restaurant.name"
-            (productClick)="viewDetail($event)">
+            (productClick)="viewDetail($event)"
+            (addToCart)="addToCart($event)">
           </app-chifa-template>
         }
         @case (TEMPLATE_IDS.CEVICHERIA) {

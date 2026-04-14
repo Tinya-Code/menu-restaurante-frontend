@@ -7,7 +7,6 @@ export const restaurantResponse = {
       "email": "alejandroleonpedro2@gmail.com",
       "phone": null,
       "display_name": "Administrador 2",
-      "photo_url": null,
       "created_at": "2026-02-28T03:28:24.097231+00:00",
       "updated_at": "2026-02-28T03:28:24.097231+00:00",
       "firebase_uid": "firebase-uid-2"
@@ -30,22 +29,12 @@ export const restaurantResponse = {
       "id": "settings-uuid-2",
       "restaurant_id": "res-uuid-2",
       "whatsapp_config": {
-        "number": "987654322",
+        "number": "924932128",
         "message_template": "Hola, me gustar\u00eda ordenar:"
       },
       "display_config": {
-        "theme": "dark",
-        "colors": {
-          "primary": "#FF6B6B",
-          "secondary": "#4ECDC4"
-        },
         "currency": "PEN",
         "language": "es",
-        "show_images": true,
-        "currency_symbol": "S/",
-        "show_categories": true,
-        "show_descriptions": true,
-        "show_availability_badge": true
       },
       "order_config": {
         "enabled": true,
@@ -57,7 +46,7 @@ export const restaurantResponse = {
           "yape",
           "plin"
         ],
-        "delivery_enabled": true,
+        "delivery_enabled": false,
         "max_order_quantity": 15,
         "accepts_reservations": true
       },
@@ -75,7 +64,7 @@ export const restaurantResponse = {
           },
           "monday": {
             "open": "09:00",
-            "close": "21:00",
+            "close": "24:00",
             "isOpen": true
           },
           "sunday": {
@@ -84,7 +73,7 @@ export const restaurantResponse = {
             "isOpen": true
           },
           "tuesday": {
-            "open": "09:00",
+            "open": "01:00",
             "close": "21:00",
             "isOpen": true
           },
@@ -94,13 +83,14 @@ export const restaurantResponse = {
             "isOpen": true
           },
           "thursday": {
-            "open": "09:00",
+            
+            "open": "00:00",
             "close": "21:00",
             "isOpen": true
           },
           "wednesday": {
             "open": "09:00",
-            "close": "21:00",
+            "close": "24:00",
             "isOpen": true
           }
         },
@@ -125,7 +115,7 @@ export const menuCategoriesResponse = {
         "menu_id": "menu-uuid-2",
         "name": "Entradas",
         "description": null,
-     "type": "entrada",
+        "type": "entrada",
         "display_order": 0,
         "is_active": true,
         "created_at": "2026-02-28T03:28:24.097231+00:00",
@@ -183,7 +173,7 @@ export const menuCategoriesResponse = {
         "menu_id": "menu-uuid-2",
         "name": "Sopas y Ensaladas",
         "description": null,
-     "type": "sopa",
+        "type": "sopa",
         "display_order": 0,
         "is_active": true,
         "created_at": "2026-02-28T03:28:24.097231+00:00",

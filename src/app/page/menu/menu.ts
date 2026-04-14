@@ -25,7 +25,7 @@ import { ModalComponent } from '../../share/components/modal/modal.component';
 import { Product } from '../../core/models/product.model';
 
 // Componentes de Detalle por Plantilla
-import { ChifaProductDetail } from '../../share/templates/chifa-template/product-detail/product-detail';
+import { ChifaProductDetail } from '../../share/templates/chifa-template/components/product-detail/product-detail';
 import { PolleriaProductDetail } from '../../share/templates/polleria-template/product-detail/product-detail';
 import { CevicheriaProductDetail } from '../../share/templates/cevicheria-template/product-detail/product-detail';
 import { ComidaRapidaProductDetail } from '../../share/templates/comida-rapida-template/product-detail/product-detail';

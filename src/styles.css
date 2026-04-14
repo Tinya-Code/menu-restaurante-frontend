@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @font-face {
   font-family: 'Bungee';
@@ -40,24 +40,42 @@
   font-style: italic;
   font-display: swap;
 }
+@font-face {
+  font-family: 'Ceviche One';
+  src: url('/fonts/CevicheOne-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
 
 @theme {
-  --font-bungee: "Bungee", system-ui;
-  --font-outfit: "Outfit", system-ui;
-  --font-oleo: "Oleo Script", cursive;
-  --font-open-sans: "Open Sans", sans-serif;
-  
-  --shadow-premium: 0 20px 50px rgba(0, 0, 0, 0.05);
-  --shadow-premium-lg: 0 30px 60px rgba(0, 0, 0, 0.12);
-  
+  --font-bungee: 'Bungee', system-ui;
+  --font-outfit: 'Outfit', system-ui;
+  --font-oleo: 'Oleo Script', system-ui;
+  --font-open-sans: 'Open Sans', sans-serif;
+  --font-ceviche: 'Ceviche One', system-ui;
+
   /* Definir variables base de colores */
 
-   --color-primary: #00A896;   /* Verde turquesa */
-  --color-secondary: #0D0D0D; /* Arena clara */
-  --color-accent: #F07167;    /* Coral vibrante */
-  --color-muted: #6C757D;     /* Gris suave */
-  --color-background: #FFFFFF;/* Fondo limpio */
-  
+  /* Base */
+  --color-primary: #00a896;
+  --color-secondary: #202540;
+  /* Acentos */
+  --color-accent: #f07167;
+  --color-accent-muted: #bd913a;
+
+  /* Neutros */
+  --color-background: #ffffff;
+  --color-surface: #f9fafb;
+  --color-muted: #6c757d;
+
+  /* Texto */
+  --color-primary-text: #ffffff;
+  --color-secondary-text: #000000;
+  --color-primary-text-accent: #c72f2f;
+  --color-primary-text-muted: #ab292c;
+  --font-display: 'Bungee', system-ui;
+  --font-display: 'Open Sans', sans-serif;
   --radius-4xl: 2rem;
   --radius-5xl: 3rem;
 }
@@ -65,53 +83,52 @@
 /* Paletas Temáticas - Sobrescribiendo variables de Tailwind directamente */
 
 .theme-polleria {
-  --color-primary: #FF4D00;
-  --color-secondary: #1A1A1A;
-  --color-accent: #FFD700;
+  --color-primary: #ff4d00;
+  --color-secondary: #1a1a1a;
+  --color-accent: #ffd700;
   --color-muted: #666666;
-  --color-background: #FDFDFD;
+  --color-background: #fdfdfd;
   --font-display: var(--font-bungee);
   --font-body: var(--font-outfit);
 }
 
 .theme-chifa {
-  --color-primary: #C41E3A;
-  --color-secondary: #0D0D0D;
-  --color-accent: #D4AF37;
-  --color-muted: #4A4A4A;
-  --color-background: #FFFBF2;
-  --font-display: var(--font-oleo);
+  --color-primary: #c72f2f;
+  --color-secondary: #202540;
+  --color-secondary-muted: #1a1e33;
+  --color-accent: #fcb418;
+  --color-accent-muted: #e0981f;
+  --color-muted: #c0c8cd;
+  --color-background: #fffbf2;
+  --color-primary-text: #ffffff;
+  --color-secondary-text: #c0c8cd;
+  --color-primary-text-muted: #ab292c;
+  --color-primary-text-accent: #c72f2f;
+  --font-display: var(--font-bungee);
   --font-body: var(--font-open-sans);
 }
 
 .theme-cevicheria {
-  --color-primary: #0077BE;
+  --color-primary: #0077be;
   --color-secondary: #002147;
-  --color-accent: #F4A460;
-  --color-muted: #5F7D8E;
-  --color-background: #FFFFFF;
+  --color-accent: #f4a460;
+  --color-muted: #5f7d8e;
+  --color-background: #ffffff;
   --font-display: var(--font-open-sans);
   --font-body: var(--font-outfit);
 }
 
 .theme-comida-rapida {
-  --color-primary: #FFD500;
-  --color-secondary: #E12026;
-  --color-accent: #FF8A00;
+  --color-primary: #ffd500;
+  --color-secondary: #e12026;
+  --color-accent: #ff8a00;
   --color-muted: #555555;
-  --color-background: #F5F5F5;
+  --color-background: #f5f5f5;
   --font-display: var(--font-bungee);
   --font-body: var(--font-outfit);
 }
 
-/* Global Fixes */
-body {
-  font-family: var(--font-body, var(--font-outfit));
-  background-color: var(--color-background);
-  color: var(--color-secondary);
-  transition: background-color 0.5s ease, color 0.5s ease;
-}
-
-h1, h2, h3, h4, h5, h6, .font-display {
-  font-family: var(--font-display, var(--font-bungee));
+img {
+  -webkit-user-drag: none; /* Safari/Chrome */
+  user-select: none; /* evita selección de texto alrededor */
 }

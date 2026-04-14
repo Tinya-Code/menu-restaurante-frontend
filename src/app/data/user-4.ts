@@ -75,7 +75,7 @@ export const restaurantResponse = {
           },
           "monday": {
             "open": "09:00",
-            "close": "21:00",
+            "close": "24:00",
             "isOpen": true
           },
           "sunday": {

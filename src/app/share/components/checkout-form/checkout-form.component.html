@@ -2,11 +2,11 @@
   
   <!-- Nombre -->
   <div class="flex flex-col gap-1">
-    <label class="text-xs font-bold uppercase tracking-wider text-primary/70 mb-1">Nombre Completo</label>
+    <label class="text-sm font-display  text-secondary mb-1">Nombre Completo</label>
     <input type="text" 
            formControlName="name" 
            placeholder="¿Cómo te llamas?"
-           class="w-full bg-secondary/30 border border-primary/20 rounded-xl px-4 py-3 text-sm transition-all focus:outline-none focus:ring-2 focus:ring-primary/40 focus:bg-secondary/50"
+           class="w-full font-body bg-gray-100 border border-primary/20 rounded-sm px-4 py-3 text-sm transition-all focus:outline-none focus:ring-2 focus:ring-primary/40 focus:bg-secondary/50"
            [class.border-red-500/50]="checkoutForm.get('name')?.touched && checkoutForm.get('name')?.invalid"
            [class.focus:ring-red-500/20]="checkoutForm.get('name')?.touched && checkoutForm.get('name')?.invalid"
            [class.bg-red-50/5]="checkoutForm.get('name')?.touched && checkoutForm.get('name')?.invalid">
@@ -20,11 +20,11 @@
 
   <!-- Dirección -->
   <div class="flex flex-col gap-1">
-    <label class="text-xs font-bold uppercase tracking-wider text-primary/70 mb-1">Dirección de Entrega</label>
+    <label class="text-sm font-display text-secondary mb-1">Dirección de Entrega</label>
     <input type="text" 
            formControlName="address" 
            placeholder="Ej: Av. Los Olivos 123"
-           class="w-full bg-secondary/30 border border-primary/20 rounded-xl px-4 py-3 text-sm transition-all focus:outline-none focus:ring-2 focus:ring-primary/40 focus:bg-secondary/50"
+           class="w-full bg-gray-100 font-body border border-primary/20 rounded-sm px-4 py-3 text-sm transition-all focus:outline-none focus:ring-2 focus:ring-primary/40 focus:bg-secondary/50"
            [class.border-red-500/50]="checkoutForm.get('address')?.touched && checkoutForm.get('address')?.invalid"
            [class.focus:ring-red-500/20]="checkoutForm.get('address')?.touched && checkoutForm.get('address')?.invalid"
            [class.bg-red-50/5]="checkoutForm.get('address')?.touched && checkoutForm.get('address')?.invalid">
@@ -38,10 +38,10 @@
 
   <!-- Método de Pago -->
   <div class="flex flex-col gap-1">
-    <label class="text-xs font-bold uppercase tracking-wider text-primary/70 mb-2">Método de Pago</label>
+    <label class="text-sm font-display  text-secondary mb-2">Método de Pago</label>
     <div class="grid grid-cols-2 gap-3">
       @for (method of paymentMethods(); track method) {
-        <label class="relative flex flex-col items-center justify-center p-4 rounded-2xl border-2 transition-all cursor-pointer group"
+        <label class="relative flex flex-col items-center justify-center p-4 rounded-sm border-2 transition-all cursor-pointer group"
                [class.border-primary]="checkoutForm.get('paymentMethod')?.value === method"
                [class.bg-primary/5]="checkoutForm.get('paymentMethod')?.value === method"
                [class.border-primary/10]="checkoutForm.get('paymentMethod')?.value !== method"
@@ -57,10 +57,7 @@
 
           <span class="text-xs font-black uppercase tracking-tighter">{{ formatPaymentMethod(method) }}</span>
 
-          @if (checkoutForm.get('paymentMethod')?.value === method) {
-            <div class="absolute top-2 right-2 w-2 h-2 bg-primary rounded-full animate-ping"></div>
-            <div class="absolute top-2 right-2 w-2 h-2 bg-primary rounded-full"></div>
-          }
+
         </label>
       }
     </div>
@@ -76,7 +73,7 @@
   <!-- Botón de Envío -->
   <button type="submit" 
           [disabled]="checkoutForm.invalid"
-          class="w-full bg-primary text-secondary font-bungee py-4 rounded-2xl shadow-premium flex items-center justify-center gap-2 transition-all hover:scale-[1.02] active:scale-95 disabled:opacity-50 disabled:grayscale disabled:cursor-not-allowed mt-6">
+          class="w-full bg-green-600 text-white font-display py-4 rounded-sm shadow-premium flex items-center justify-center gap-2 transition-all active:scale-95 disabled:bg-transparent disabled:text-muted disabled:border-2 border-gray-100 disabled:cursor-not-allowed mt-6">
     <lucide-icon [img]="MessageCircle" class="w-5 h-5"></lucide-icon>
     <span>PEDIR POR WHATSAPP</span>
   </button>

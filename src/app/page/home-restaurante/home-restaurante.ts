@@ -4,12 +4,13 @@ import { RouterLink } from '@angular/router';
 import { MockDataService } from '../../core/services/mock-data.service';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { LucideAngularModule, Store, ChevronRight } from 'lucide-angular';
+import { Header } from "../../share/components/header/header.component";
 
 
 @Component({
   selector: 'app-home-restaurante',
   standalone: true,
-  imports: [CommonModule, RouterLink, LucideAngularModule],
+  imports: [CommonModule, RouterLink, LucideAngularModule, Header],
   templateUrl: './home-restaurante.html',
   styleUrl: './home-restaurante.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

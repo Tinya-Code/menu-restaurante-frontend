@@ -67,19 +67,19 @@ export class DataStoreService {
       
       const menus = [...(firstRes.menus || [])];
       
-      // Normalizamos: Cada objeto será { ...category, products }
-      const flattenedCategories = response.data.map((item: any) => ({
-        ...item.category,
+      // Normalizamos: Cada objeto será { category: {...}, products: [...] } (CategoryData)
+      const normalizedCategories = response.data.map((item: any) => ({
+        category: item.category,
         products: item.products
       }));
 
       if (menus.length === 0) {
         menus.push({
           menu: { id: 'main', name: 'Principal' } as any,
-          categories: flattenedCategories
+          categories: normalizedCategories
         });
       } else {
-        menus[0] = { ...menus[0], categories: flattenedCategories };
+        menus[0] = { ...menus[0], categories: normalizedCategories };
       }
       
       firstRes.menus = menus;

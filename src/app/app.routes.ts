@@ -12,6 +12,11 @@ export const routes: Routes = [
     loadComponent: () => import('./page/menu/menu').then(m => m.Menu)
   },
   {
+    path: 'register',
+    title: 'Registro | Crea tu Menú',
+    loadComponent: () => import('./page/register-page/register-page').then(m => m.RegisterPage)
+  },
+  {
     path: '**',
     redirectTo: ''
   }

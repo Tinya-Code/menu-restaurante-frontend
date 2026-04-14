@@ -27,15 +27,15 @@ import { LucideAngularModule, ChevronLeft, ChevronRight } from 'lucide-angular';
              (scroll)="updateScrollState()"
              class="flex items-center gap-3 overflow-x-auto select-none cursor-grab active:cursor-grabbing scroll-smooth
                     [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-          @for (category of categories(); track category.id) {
-            <button (click)="scrollToCategory(category.id)"
+          @for (catData of categories(); track catData.category.id) {
+            <button (click)="scrollToCategory(catData.category.id)"
                     class="whitespace-nowrap px-6 py-2.5 rounded-full text-sm font-bold uppercase tracking-wider transition-all
                            hover:bg-primary/20 hover:text-primary active:scale-95"
-                    [class.bg-primary]="activeCategoryId() === category.id"
-                    [class.text-white]="activeCategoryId() === category.id"
-                    [class.bg-secondary/5]="activeCategoryId() !== category.id"
-                    [class.text-secondary]="activeCategoryId() !== category.id">
-              {{ category.name }}
+                    [class.bg-primary]="activeCategoryId() === catData.category.id"
+                    [class.text-white]="activeCategoryId() === catData.category.id"
+                    [class.bg-secondary/5]="activeCategoryId() !== catData.category.id"
+                    [class.text-secondary]="activeCategoryId() !== catData.category.id">
+              {{ catData.category.name }}
             </button>
           }
         </div>

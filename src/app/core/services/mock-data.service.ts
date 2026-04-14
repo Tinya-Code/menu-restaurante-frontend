@@ -2,6 +2,8 @@ import { Injectable, inject } from '@angular/core';
 import { Observable, from, map, tap, forkJoin, of } from 'rxjs';
 import { DataStoreService } from './data-store.service';
 import { RootData } from '../models/data-structure.model';
+import { PLANS, TEMPLATES } from '../../data/plans-templates';
+import { delay } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -98,5 +100,26 @@ export class MockDataService {
         restaurant: res.data.restaurant
       })))
     );
+  }
+
+  getPlans(): Observable<any[]> {
+    return of(PLANS);
+  }
+
+  getTemplates(): Observable<any[]> {
+    return of(TEMPLATES);
+  }
+
+  registerRestaurant(formData: any): Observable<any> {
+    // Simular latencia de red
+    return of({
+      status: 'success',
+      message: 'Restaurante registrado exitosamente',
+      data: {
+        user_id: 'new-user-uuid',
+        restaurant_id: 'new-res-uuid',
+        slug: formData.name.toLowerCase().replace(/ /g, '-')
+      }
+    }).pipe(delay(2000));
   }
 }

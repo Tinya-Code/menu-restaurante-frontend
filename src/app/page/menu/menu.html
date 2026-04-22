@@ -11,9 +11,9 @@
   >
   </app-category-nav>
 
-  <!-- Categorías y Productos (Plantillas Temáticas) -->
+  <!-- Categorías y Productos  -->
   <main class="mx-auto px-4 md:px-0 pt-0">
-    <!-- Renderizado Condicional de Plantillas Temáticas -->
+    <!-- Renderizado Condicional -->
     @switch (restaurant.template_id) { @case (TEMPLATE_IDS.POLLERIA) {
     <app-polleria-template
       [categories]="menuService.categories()"

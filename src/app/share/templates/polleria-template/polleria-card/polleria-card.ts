@@ -12,7 +12,7 @@ import { PrecioPipe } from '../../../pipes/precio.pipe';
   styleUrls: ['./polleria-card.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PolleriaCardComponent {
+export class PolleriaCard {
   product = input.required<Product>();
   Flame = Flame;
   ShoppingBag = ShoppingBag;

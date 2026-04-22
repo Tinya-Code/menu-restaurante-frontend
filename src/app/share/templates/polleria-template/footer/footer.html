@@ -1,8 +1,8 @@
-<footer class="md:mt-32 relative">
+<footer class="relative">
   <!-- Main Footer Container -->
   <div class="bg-secondary relative overflow-visible">
     <!-- Content Grid -->
-    <div class="max-w-7xl mx-auto px-6 pb-8">
+    <div class="mx-auto px-6 pb-8">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start mb-6 md:mb-0">
         <!-- Left: Schedule -->
         <div class="order-2 md:order-1 flex flex-col items-center self-center text-center md:mt-4">
@@ -13,7 +13,7 @@
           </div>
 
           <div
-            class="flex flex-col gap-4 lg:flex-row md:justify-center justify-start font-open-sans text-white/90 text-sm"
+            class="flex flex-col gap-4 md:justify-center justify-start font-open-sans text-white/90 text-sm"
           >
             <div class="flex items-center gap-1">
               <lucide-icon [img]="Clock" class="w-4 h-4"></lucide-icon>
@@ -54,7 +54,7 @@
             </h3>
           </div>
 
-          <div class="flex flex-col lg:flex-row items-start justify-center gap-4">
+          <div class="flex flex-col items-start justify-center gap-4">
             @if (socialMediaSafe(); as sm) { @if (sm.instagram) {
             <a
               [href]="

@@ -1,0 +1,10 @@
+<div
+  #container
+  class="grid"
+  [style.grid-template-rows]="'repeat(' + visibleCount() + ', ' + rowHeight() + 'px)'"
+  [style.gap.px]="gap()"
+>
+  @for (src of visibleImages(); track src) {
+  <img [src]="src" alt="" />
+  }
+</div>

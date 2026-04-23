@@ -66,12 +66,13 @@
 
 .theme-polleria {
   --color-primary: #FF4D00;
-  --color-secondary: #1A1A1A;
+  --color-secondary: #2d1d12;
   --color-accent: #FFD700;
   --color-muted: #666666;
   --color-background: #FDFDFD;
-  --font-display: var(--font-bungee);
-  --font-body: var(--font-outfit);
+  --font-display: var(--font-oleo);
+  --font-body: var(--font-open-sans);
+  --font-accent: var(--font-outfit);
 }
 
 .theme-chifa {

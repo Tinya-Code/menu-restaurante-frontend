@@ -83,13 +83,16 @@
 /* Paletas Temáticas - Sobrescribiendo variables de Tailwind directamente */
 
 .theme-polleria {
-  --color-primary: #ff4d00;
-  --color-secondary: #1a1a1a;
-  --color-accent: #ffd700;
+
+  --color-primary: #FF4D00;
+  --color-secondary: #2d1d12;
+  --color-accent: #FFD700;
   --color-muted: #666666;
-  --color-background: #fdfdfd;
-  --font-display: var(--font-bungee);
-  --font-body: var(--font-outfit);
+  --color-background: #FDFDFD;
+  --font-display: var(--font-oleo);
+  --font-body: var(--font-open-sans);
+  --font-accent: var(--font-outfit);
+
 }
 
 .theme-chifa {

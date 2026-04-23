@@ -1,35 +1,40 @@
-<div class="group relative bg-white rounded-4xl p-6 shadow-premium hover:shadow-primary/10 transition-all duration-500 border-2 border-transparent hover:border-primary/20 overflow-hidden">
-  <!-- Decoración de fondo -->
-  <div class="absolute -right-8 -top-8 w-24 h-24 bg-primary/5 rounded-full blur-2xl group-hover:bg-primary/10 transition-colors"></div>
-
-  <div class="relative z-10 space-y-4">
-    <div class="flex justify-between items-start gap-4">
+<div
+  class="group relative py-2 md:py-4 transition-all duration-500 overflow-hidden border-b border-b-primary/60"
+>
+  <div class="relative z-10">
+    <div class="flex justify-between items-start gap-6">
+      <!-- Lado izquierdo: título y descripción -->
       <div class="flex-1">
-        <div class="flex items-center gap-2 mb-1">
+        <!-- <div class="flex items-center gap-2 mb-1">
           <lucide-icon [img]="Flame" class="w-4 h-4 text-primary"></lucide-icon>
-          <span class="text-[10px] font-bold text-primary uppercase tracking-widest">Especialidad</span>
-        </div>
-        <h3 class="text-xl font-bungee text-secondary leading-tight group-hover:text-primary transition-colors">
+          <span class="text-[10px] font-bold text-primary uppercase tracking-widest"
+            >Especialidad</span
+          >
+        </div> -->
+        <h3
+          class="text-lg md:text-2xl font-semibold text-secondary leading-tight group-hover:text-primary transition-colors mb-2"
+        >
           {{ product().name }}
         </h3>
+        <p class="text-sm text-muted leading-relaxed">
+          {{
+            product().description || 'Preparado a las brasas con nuestra receta secreta de la casa.'
+          }}
+        </p>
       </div>
-      <span class="text-lg font-bungee text-secondary">{{ product().price | precio }}</span>
-    </div>
 
-    <p class="text-sm text-muted line-clamp-2 leading-relaxed italic">
-      {{ product().description || 'Preparado a las brasas con nuestra receta secreta de la casa.' }}
-    </p>
-
-    <div class="pt-4 border-t border-dashed border-primary/20 flex items-center justify-between">
-      <div class="flex items-center gap-1">
-         <div class="w-1 h-1 rounded-full bg-primary/40"></div>
-         <div class="w-1 h-1 rounded-full bg-primary/40"></div>
-         <div class="w-1 h-1 rounded-full bg-primary/40"></div>
+      <!-- Lado derecho: precio y botón -->
+      <div class="flex flex-col items-end gap-3">
+        <span class="text-lg md:text-2xl font-oleo font-semibold text-primary">{{
+          product().price | precio
+        }}</span>
+        <button
+          class="flex items-center gap-2 bg-secondary hover:bg-primary text-white font-bold uppercase tracking-widest md:py-2 py-1 md:px-4 px-2 rounded-xl transition-all duration-300 hover:shadow-lg text-xs"
+        >
+          <span class="text-xs">Agregar</span>
+          <lucide-icon [img]="ShoppingBag" class="w-4 h-4 hidden md:inline"></lucide-icon>
+        </button>
       </div>
-      <button class="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-secondary hover:text-primary transition-colors">
-        <lucide-icon [img]="ShoppingBag" class="w-4 h-4"></lucide-icon>
-        Pedir ahora
-      </button>
     </div>
   </div>
 </div>

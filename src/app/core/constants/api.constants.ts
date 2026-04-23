@@ -9,6 +9,9 @@ export const API_CONSTANTS = {
     MENU: '/menu-categories',
     CATEGORIAS: '/categories',
     CONTACTO: '/contact',
+    AUTH: {
+      REGISTER: '/auth/register',
+    }
   },
   DEFAULT_CONFIG: {
     CURRENCY: 'PEN',

@@ -3,8 +3,9 @@ import { DataStoreService } from './data-store.service';
 import { initializeApp } from 'firebase/app';
 import { getAuth, GoogleAuthProvider, signInWithPopup, User as FirebaseUser } from 'firebase/auth';
 import { environment } from '../../../environments/environment';
+import { API_CONSTANTS } from '../constants/api.constants';
 import { ApiService } from './api.service';
-import { Observable, from, map, switchMap } from 'rxjs';
+import { Observable, from, map, switchMap, of } from 'rxjs';
 import { ApiResponse } from '../models/api-response.model';
 
 @Injectable({
@@ -27,6 +28,20 @@ export class UserService {
   readonly user = this.dataStore.user;
   readonly isAdmin = computed(() => this.user()?.display_name === 'Admin');
 
+  constructor() {
+    this.auth.onAuthStateChanged(async (user) => {
+      this._googleUser.set(user);
+      if (user) {
+        const token = await user.getIdToken();
+        this._token.set(token);
+        localStorage.setItem('token', token);
+      } else {
+        this._token.set(null);
+        localStorage.removeItem('token');
+      }
+    });
+  }
+
   loginWithGoogle(): Observable<FirebaseUser> {
     return from(signInWithPopup(this.auth, this.googleProvider)).pipe(
       switchMap(async (result) => {
@@ -39,8 +54,16 @@ export class UserService {
     );
   }
 
+  getIdToken(): Observable<string | null> {
+    const user = this.auth.currentUser;
+    if (user) {
+      return from(user.getIdToken());
+    }
+    return of(null);
+  }
+
   registerRestaurant(data: any): Observable<ApiResponse<any>> {
-    return this.apiService.post<any>('/auth/register', data);
+    return this.apiService.post<any>(API_CONSTANTS.ENDPOINTS.AUTH.REGISTER, data);
   }
 
   logout() {

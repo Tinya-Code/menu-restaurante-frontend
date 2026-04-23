@@ -1,6 +1,7 @@
 import { Component, inject, OnInit, AfterViewInit, ElementRef, ViewChild, signal } from '@angular/core';
 import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 import { UserService } from '../../../core/services/user.service';
 import { LucideAngularModule, MapPin, Check, Loader2, CreditCard, Layout } from 'lucide-angular';
 import * as L from 'leaflet';
@@ -14,6 +15,7 @@ import * as L from 'leaflet';
 export class UserForm implements OnInit, AfterViewInit {
   private fb = inject(FormBuilder);
   private userService = inject(UserService);
+  private router = inject(Router);
 
   // Icons
   readonly MapPin = MapPin;
@@ -124,10 +126,17 @@ export class UserForm implements OnInit, AfterViewInit {
     console.log('Enviando datos de registro:', submissionData);
 
     this.userService.registerRestaurant(submissionData).subscribe({
-      next: (res) => {
+      next: (res: any) => {
         this.loading.set(false);
-        this.success.set(true);
-        console.log('Registro exitoso:', res);
+        if (res.success) {
+          this.success.set(true);
+          console.log('Registro exitoso:', res);
+          if (res.redirect_url) {
+            this.router.navigateByUrl(res.redirect_url);
+          }
+        } else {
+          this.errorMessage.set(res.message || 'Hubo un error al procesar tu registro.');
+        }
       },
       error: (err) => {
         this.loading.set(false);

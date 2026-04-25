@@ -1,0 +1,39 @@
+<div class="space-y-8">
+  <div class="space-y-6">
+    <div class="flex items-center justify-between bg-primary p-6 rounded-3xl shadow-lg transform rotate-1">
+      <div class="flex flex-col">
+        <span class="text-[10px] font-black uppercase text-secondary/60 tracking-widest">Total Price</span>
+        <p class="text-4xl font-bungee text-secondary">{{ product().price | precio }}</p>
+      </div>
+      <div class="bg-secondary text-primary px-4 py-2 rounded-xl font-black text-xs italic">
+        SUPER VALUE
+      </div>
+    </div>
+
+    <p class="text-secondary leading-relaxed text-lg font-bold italic uppercase tracking-tighter">
+      {{ product().description || 'Sabor explosivo y preparación instantánea para saciar tu antojo ahora mismo.' }}
+    </p>
+
+    <div class="flex items-center justify-between p-4 bg-secondary text-primary rounded-3xl">
+      <span class="font-bungee text-sm uppercase italic">Cantidad</span>
+      <div class="flex items-center gap-6">
+        <button (click)="decrease()" 
+                class="w-12 h-12 flex items-center justify-center bg-primary text-secondary rounded-2xl shadow-xl hover:scale-110 active:scale-90 transition-all disabled:opacity-30"
+                [disabled]="quantity() <= 1">
+          <lucide-icon [img]="Minus" class="w-6 h-6"></lucide-icon>
+        </button>
+        <span class="w-8 text-center font-bungee text-3xl">{{ quantity() }}</span>
+        <button (click)="increase()" 
+                class="w-12 h-12 flex items-center justify-center bg-primary text-secondary rounded-2xl shadow-xl hover:scale-110 active:scale-90 transition-all">
+          <lucide-icon [img]="Plus" class="w-6 h-6"></lucide-icon>
+        </button>
+      </div>
+    </div>
+
+    <button (click)="onAddToCart()" 
+            class="w-full bg-secondary text-primary py-6 rounded-3xl font-bungee text-2xl shadow-2xl hover:bg-primary hover:text-secondary transition-all flex items-center justify-center gap-4 uppercase italic">
+      <lucide-icon [img]="ShoppingBag" class="w-7 h-7"></lucide-icon>
+      ¡Pillarlo ya!
+    </button>
+  </div>
+</div>

@@ -1,0 +1,135 @@
+/* You can add global styles to this file, and also import other style files */
+@import 'tailwindcss';
+
+@font-face {
+  font-family: 'Bungee';
+  src: url('/fonts/Bungee-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Oleo Script';
+  src: url('/fonts/OleoScript-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Oleo Script';
+  src: url('/fonts/OleoScript-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  src: url('/fonts/OpenSans-VariableFont_wdth,wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  src: url('/fonts/OpenSans-Italic-VariableFont_wdth,wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Ceviche One';
+  src: url('/fonts/CevicheOne-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --font-bungee: 'Bungee', system-ui;
+  --font-outfit: 'Outfit', system-ui;
+  --font-oleo: 'Oleo Script', system-ui;
+  --font-open-sans: 'Open Sans', sans-serif;
+  --font-ceviche: 'Ceviche One', system-ui;
+
+  /* Definir variables base de colores */
+
+  /* Base */
+  --color-primary: #00a896;
+  --color-secondary: #202540;
+  /* Acentos */
+  --color-accent: #f07167;
+  --color-accent-muted: #bd913a;
+
+  /* Neutros */
+  --color-background: #ffffff;
+  --color-surface: #f9fafb;
+  --color-muted: #6c757d;
+
+  /* Texto */
+  --color-primary-text: #ffffff;
+  --color-secondary-text: #000000;
+  --color-primary-text-accent: #c72f2f;
+  --color-primary-text-muted: #ab292c;
+  --font-display: 'Bungee', system-ui;
+  --font-display: 'Open Sans', sans-serif;
+  --radius-4xl: 2rem;
+  --radius-5xl: 3rem;
+}
+
+/* Paletas Temáticas - Sobrescribiendo variables de Tailwind directamente */
+
+.theme-polleria {
+  --color-primary: #ff4d00;
+  --color-secondary: #2d1d12;
+  --color-accent: #ffd700;
+  --color-muted: #666666;
+  --color-background: #fdfdfd;
+  --font-display: var(--font-oleo);
+  --font-body: var(--font-open-sans);
+  --font-accent: var(--font-outfit);
+}
+
+.theme-chifa {
+  --color-primary: #c72f2f;
+  --color-secondary: #202540;
+  --color-secondary-muted: #1a1e33;
+  --color-accent: #fcb418;
+  --color-accent-muted: #e0981f;
+  --color-muted: #c0c8cd;
+  --color-background: #fffbf2;
+  --color-primary-text: #ffffff;
+  --color-secondary-text: #c0c8cd;
+  --color-primary-text-muted: #ab292c;
+  --color-primary-text-accent: #c72f2f;
+  --font-display: var(--font-bungee);
+  --font-body: var(--font-open-sans);
+}
+
+.theme-cevicheria {
+  --color-primary: #0077be;
+  --color-secondary: #002147;
+  --color-accent: #f4a460;
+  --color-muted: #5f7d8e;
+  --color-background: #ffffff;
+  --font-display: var(--font-open-sans);
+  --font-body: var(--font-outfit);
+}
+
+.theme-comida-rapida {
+  --color-primary: #ffd500;
+  --color-secondary: #e12026;
+  --color-accent: #ff8a00;
+  --color-muted: #555555;
+  --color-background: #f5f5f5;
+  --font-display: var(--font-bungee);
+  --font-body: var(--font-outfit);
+}
+
+img {
+  -webkit-user-drag: none; /* Safari/Chrome */
+  user-select: none; /* evita selección de texto alrededor */
+}

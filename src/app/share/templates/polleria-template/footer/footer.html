@@ -1,0 +1,119 @@
+<footer class="relative">
+  <!-- Main Footer Container -->
+  <div class="bg-secondary relative overflow-visible">
+    <!-- Content Grid -->
+    <div class="mx-auto px-6 pb-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start mb-6 md:mb-0">
+        <!-- Left: Schedule -->
+        <div class="order-2 md:order-1 flex flex-col items-center self-center text-center md:mt-4">
+          <div class="flex md:items-center md:justify-center justify-start gap-2 mb-4">
+            <h3 class="font-open-sans text-sm font-bold uppercase tracking-wider text-white/60">
+              NUESTRO HORARIO
+            </h3>
+          </div>
+
+          <div
+            class="flex flex-col gap-4 md:justify-center justify-start font-open-sans text-white/90 text-sm"
+          >
+            <div class="flex items-center gap-1">
+              <lucide-icon [img]="Clock" class="w-4 h-4"></lucide-icon>
+              <div class="flex lg:flex-row flex-col items-start">
+                <span>Lun - Jue: </span>
+
+                <span>10 am - 9 pm</span>
+              </div>
+            </div>
+            <div class="flex items-center gap-1">
+              <lucide-icon [img]="Clock" class="w-4 h-4"></lucide-icon>
+              <div class="flex lg:flex-row flex-col items-start">
+                <span>Vie - Dom: </span>
+                <span>11 am - 11 pm</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Center: Food Image -->
+        <div class="order-1 md:order-2 relative flex justify-center mt-0">
+          <div class="relative">
+            <img
+              src="/assets/polleria-template/footer.png"
+              alt="Plato destacado"
+              class="w-64 md:w-80 object-contain drop-shadow-2xl"
+            />
+          </div>
+        </div>
+
+        <!-- Right: Social Media -->
+        <div
+          class="order-3 md:order-3 flex flex-col items-center self-center text-center md:text-right"
+        >
+          <div class="flex items-center justify-center md:justify-end gap-2 mb-4 md:mt-4">
+            <h3 class="font-open-sans text-sm font-bold uppercase tracking-wider text-white/60">
+              SÍGUENOS EN REDES
+            </h3>
+          </div>
+
+          <div class="flex flex-col items-start justify-center gap-4">
+            @if (socialMediaSafe(); as sm) { @if (sm.instagram) {
+            <a
+              [href]="
+                sm.instagram.startsWith('http')
+                  ? sm.instagram
+                  : 'https://instagram.com/' + sm.instagram.replace('@', '')
+              "
+              target="_blank"
+              class="flex items-center gap-2 text-white/80 hover:text-primary transition-colors group"
+            >
+              <lucide-icon [img]="Instagram" class="w-4 h-4"></lucide-icon>
+              <span class="font-open-sans text-sm">{{ getSocialHandle(sm.instagram) }}</span>
+            </a>
+            } @if (sm.facebook) {
+            <a
+              [href]="
+                sm.facebook.startsWith('http') ? sm.facebook : 'https://facebook.com/' + sm.facebook
+              "
+              target="_blank"
+              class="flex items-center gap-2 text-white/80 hover:text-primary transition-colors group"
+            >
+              <lucide-icon [img]="Facebook" class="w-4 h-4"></lucide-icon>
+              <span class="font-open-sans text-sm">{{ getSocialHandle(sm.facebook) }}</span>
+            </a>
+            } @if (sm.tiktok) {
+            <a
+              [href]="
+                sm.tiktok.startsWith('http')
+                  ? sm.tiktok
+                  : 'https://tiktok.com/@' + sm.tiktok.replace('@', '')
+              "
+              target="_blank"
+              class="flex items-center gap-2 text-white/80 hover:text-primary transition-colors group"
+            >
+              <lucide-icon [img]="Tiktok" class="w-4 h-4"></lucide-icon>
+              <span class="font-open-sans text-sm">{{ getSocialHandle(sm.tiktok) }}</span>
+            </a>
+            } }
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="border-t border-white/10 pb-20 md:mb-0">
+      <div class="max-w-7xl mx-auto px-6 py-4">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+          <!-- Copyright -->
+          <p class="font-open-sans text-sm text-white/50">© Copyright {{ currentYear() }}</p>
+
+          <!-- Logo -->
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
+              <lucide-icon [img]="ChefHat" class="w-6 h-6 text-secondary"></lucide-icon>
+            </div>
+            <span class="font-oleo text-xl text-white/80">{{ restaurantName() }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

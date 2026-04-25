@@ -1,0 +1,88 @@
+<footer class="py-20 bg-secondary text-white rounded-t-5xl shadow-2xl overflow-hidden relative border-t-8 border-primary/20">
+  <!-- Olas de fondo -->
+  <div class="absolute inset-0 opacity-10 pointer-events-none overflow-hidden h-full flex flex-col justify-end">
+    <div class="flex animate-wave p-10 gap-10">
+      @for (i of [1,2,3,4,5,6,7,8]; track i) {
+        <lucide-icon [img]="Waves" class="w-24 h-24 text-primary"></lucide-icon>
+      }
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-10 relative z-10">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16 items-center">
+      <!-- Logo Marino -->
+      <div class="space-y-6 text-center md:text-left">
+        <div class="w-16 h-16 border-2 border-primary/30 rounded-full flex items-center justify-center mx-auto md:mx-0 shadow-lg">
+          <lucide-icon [img]="Anchor" class="w-8 h-8 text-primary shadow-marine"></lucide-icon>
+        </div>
+        <div>
+          <h2 class="text-4xl font-bungee text-white tracking-widest leading-none">MARE MAGNUM</h2>
+          <p class="text-primary text-[10px] font-black uppercase tracking-[0.4em] mt-3">Sabor de Alta Mar</p>
+        </div>
+      </div>
+
+      <!-- Social Media -->
+      <div class="flex flex-col items-center lg:items-start gap-10">
+        <div class="space-y-4">
+          <span class="text-primary/40 text-[9px] font-black uppercase tracking-widest block text-center lg:text-left">Nuestras Redes</span>
+          <div class="flex items-center gap-6">
+            @if (socialMediaSafe(); as sm) {
+              @if (sm.facebook) {
+                <a [href]="sm.facebook" target="_blank" class="w-14 h-14 border border-primary/20 rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all hover:scale-110">
+                  <lucide-icon [img]="Facebook" class="w-6 h-6"></lucide-icon>
+                </a>
+              }
+              @if (sm.instagram) {
+                <a [href]="sm.instagram" target="_blank" class="w-14 h-14 border border-primary/20 rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all hover:scale-110">
+                  <lucide-icon [img]="Instagram" class="w-6 h-6"></lucide-icon>
+                </a>
+              }
+            }
+          </div>
+        </div>
+        <p class="text-neutral-400 text-sm max-w-[250px] text-center italic leading-relaxed">Pescados y mariscos capturados de manera sostenible para tu mesa.</p>
+      </div>
+
+      <!-- Footer Info -->
+      <div class="flex flex-col items-center lg:items-end gap-10 text-center lg:text-right">
+        <div class="space-y-3">
+          <span class="text-primary/40 text-[9px] font-black uppercase tracking-widest">Dónde Ubicarnos</span>
+          <p class="text-2xl font-bungee leading-tight tracking-tighter">Bulevar del Puerto 312</p>
+        </div>
+        
+        @if (todayHours(); as schedule) {
+          <div class="space-y-2">
+            <span class="text-primary/40 text-[9px] font-black uppercase tracking-widest">Horario de Atención</span>
+            <p class="text-sm font-bold text-white uppercase tracking-widest">
+              {{ isOpen() ? 'Abierto: ' : 'Hoy: ' }} {{ schedule.open | timeFormat }} - {{ schedule.close | timeFormat }}
+            </p>
+          </div>
+        }
+
+        <div class="inline-flex items-center gap-2 text-primary font-black uppercase tracking-[0.3em] text-[10px]">
+          <div class="w-2 h-2 bg-primary rounded-full animate-pulse shadow-primary"></div>
+          Puerto del Callao, Perú
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-20 pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 opacity-40 hover:opacity-100 transition-opacity">
+       <p class="text-[9px] font-bold uppercase tracking-[0.3em]">Cevicheria Premium &copy; 2024</p>
+       <p class="text-[9px] font-bold uppercase tracking-[0.3em]">Lima &middot; Perú</p>
+    </div>
+  </div>
+
+  <style>
+    .animate-wave {
+      animation: wave 10s linear infinite;
+    }
+    @keyframes wave {
+      0% { transform: translateX(0); }
+      50% { transform: translateX(-50px); }
+      100% { transform: translateX(0); }
+    }
+    .shadow-marine {
+       filter: drop-shadow(0 0 10px var(--primary));
+    }
+  </style>
+</footer>

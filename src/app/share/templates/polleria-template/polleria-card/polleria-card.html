@@ -1,0 +1,40 @@
+<div
+  class="group relative py-2 md:py-4 transition-all duration-500 overflow-hidden border-b border-b-primary/60"
+>
+  <div class="relative z-10">
+    <div class="flex justify-between items-start gap-6">
+      <!-- Lado izquierdo: título y descripción -->
+      <div class="flex-1">
+        <!-- <div class="flex items-center gap-2 mb-1">
+          <lucide-icon [img]="Flame" class="w-4 h-4 text-primary"></lucide-icon>
+          <span class="text-[10px] font-bold text-primary uppercase tracking-widest"
+            >Especialidad</span
+          >
+        </div> -->
+        <h3
+          class="text-lg md:text-2xl font-semibold text-secondary leading-tight group-hover:text-primary transition-colors mb-2"
+        >
+          {{ product().name }}
+        </h3>
+        <p class="text-sm text-muted leading-relaxed">
+          {{
+            product().description || 'Preparado a las brasas con nuestra receta secreta de la casa.'
+          }}
+        </p>
+      </div>
+
+      <!-- Lado derecho: precio y botón -->
+      <div class="flex flex-col items-end gap-3">
+        <span class="text-lg md:text-2xl font-oleo font-semibold text-primary">{{
+          product().price | precio
+        }}</span>
+        <button
+          class="flex items-center gap-2 bg-secondary hover:bg-primary text-white font-bold uppercase tracking-widest md:py-2 py-1 md:px-4 px-2 rounded-xl transition-all duration-300 hover:shadow-lg text-xs"
+        >
+          <span class="text-xs">Agregar</span>
+          <lucide-icon [img]="ShoppingBag" class="w-4 h-4 hidden md:inline"></lucide-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

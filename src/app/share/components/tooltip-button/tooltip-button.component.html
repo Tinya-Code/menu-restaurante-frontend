@@ -1,0 +1,18 @@
+<div class="relative inline-flex items-center group/tooltip cursor-pointer" 
+     (click)="$event.stopPropagation()">
+  
+  <!-- Trigger Button -->
+  <button type="button" 
+          class="focus:outline-none transition-transform active:scale-95 flex items-center justify-center">
+    <ng-content></ng-content>
+  </button>
+  
+  <!-- Tooltip Message (Tailwind Only Interactivity) -->
+  <div class="absolute bottom-0.5 left-1/2 -translate-x-1/2 mb-2 px-3 py-1.5 bg-background backdrop-blur-md text-secondary text-xs font-bold rounded-xl shadow-2xl z-10 whitespace-nowrap 
+              opacity-0 group-focus/tooltip:translate-y-0 group-focus/tooltip:opacity-100  translate-y-2 pointer-events-none group-hover/tooltip:opacity-100 group-hover/tooltip:translate-y-0 transition-all duration-200 border border-primary/20">
+    {{ tooltipText() }}
+    
+    <!-- Triangle Indicator -->
+    <div class="absolute top-[98%] left-1/2 -translate-x-1/2 border-8 border-transparent border-t-background/90"></div>
+  </div>
+</div>

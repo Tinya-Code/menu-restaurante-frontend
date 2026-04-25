@@ -1,0 +1,22 @@
+<app-polleria-header [restaurantName]="restaurantName()"></app-polleria-header>
+<app-layout-scale>
+  <div
+    class="bg-[url('/assets/polleria-template/fondo-polleria.svg')] bg-[length:310px_490px] md:bg-[length:320px_465px] bg-repeat  border border-gray-200"
+  >
+    @for (category of categories(); track category.id) {
+      <section [id]="'category-' + category.id" class="flex flex-col py-4 my-12 mx-16 px-6 bg-white">
+        <!-- Layout responsive-->
+        <h2 class="text-4xl md:text-5xl text-secondary mb-6 md:mb-8">{{ category.category.name}}</h2>
+        <!-- Cards en columna vertical -->
+        <div class="flex flex-col gap-4">
+          @for (product of category.products; track product.id) {
+            <app-polleria-card [product]="product" (click)="productClick.emit(product)">
+            </app-polleria-card>
+          }
+        </div>
+      </section>
+    }
+  </div>
+</app-layout-scale>
+
+<app-polleria-footer class=""></app-polleria-footer>

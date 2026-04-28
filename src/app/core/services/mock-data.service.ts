@@ -68,6 +68,22 @@ export class MockDataService {
   }
 
   /**
+   * Obtiene los combos (Consulta Independiente).
+   */
+  getCombos(identifier: number | string): Observable<any> {
+    const index = this.getIndexBySlug(identifier);
+    return from(this.loadModule(index).then(m => m.combosResponse));
+  }
+
+  /**
+   * Obtiene las promociones (Consulta Independiente).
+   */
+  getPromotions(identifier: number | string): Observable<any> {
+    const index = this.getIndexBySlug(identifier);
+    return from(this.loadModule(index).then(m => m.promotionsResponse));
+  }
+
+  /**
    * Método de conveniencia para cargar todo en el DataStore (Legacy/Initial).
    */
   loadFullUserData(identifier: number | string): Observable<RootData> {

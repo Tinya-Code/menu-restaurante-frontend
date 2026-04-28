@@ -69,6 +69,10 @@ export interface Restaurant {
   template_id: string | null;
   phone: string | null;
   address: string | null;
+  location?: {
+    lat: number;
+    lng: number;
+  };
   is_active: boolean;
   created_at: string;
   updated_at: string;

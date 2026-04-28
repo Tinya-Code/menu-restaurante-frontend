@@ -7,16 +7,19 @@ import { LucideAngularModule, Share2 } from 'lucide-angular';
   standalone: true,
   imports: [CommonModule, LucideAngularModule],
   template: `
-    <button 
-      (click)="shareMenu()" 
-      class="flex items-center gap-2 px-4 py-2 bg-primary/80 hover:bg-primary text-white rounded-xl transition-all duration-300 font-bold border border-primary/20 group backdrop-blur-sm"
+    <button
+      (click)="shareMenu()"
+      class="flex items-center gap-2 px-4 py-2 bg-primary/80 hover:bg-primary text-white rounded-sm transition-all duration-300 font-bold border border-primary/20 group backdrop-blur-sm"
       title="Compartir este menú"
     >
-      <lucide-icon [img]="Share2" class="w-4 h-4 group-hover:scale-110 transition-transform"></lucide-icon>
+      <lucide-icon
+        [img]="Share2"
+        class="w-4 h-4 group-hover:scale-110 transition-transform"
+      ></lucide-icon>
       <span class="text-sm select-none">Compartir</span>
     </button>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ShareButtonComponent {
   readonly Share2 = Share2;

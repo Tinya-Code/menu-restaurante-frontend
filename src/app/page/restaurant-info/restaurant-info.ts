@@ -1,17 +1,34 @@
 import { CommonModule } from '@angular/common';
 import {
+  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   computed,
+  DestroyRef,
+  ElementRef,
   inject,
+  OnDestroy,
   OnInit,
   signal,
+  ViewChild,
 } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { ArrowLeft, Clock, Flame, Globe, LucideAngularModule, MapPin, Phone } from 'lucide-angular';
+import { ArrowLeft, Globe, LucideAngularModule, Phone } from 'lucide-angular';
 import { TEMPLATE_IDS } from '../../core/constants/template.constants';
 import { MockDataService } from '../../core/services/mock-data.service';
 import { RestaurantService } from '../../core/services/restaurant.service';
+import * as L from 'leaflet';
+
+L.Marker.prototype.options.icon = L.icon({
+  iconRetinaUrl: 'assets/marker-icon-2x.png',
+  iconUrl: 'assets/marker-icon.png',
+  shadowUrl: 'assets/marker-shadow.png',
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  tooltipAnchor: [16, -28],
+  shadowSize: [41, 41],
+});
 
 @Component({
   selector: 'app-restaurant-info',
@@ -20,18 +37,27 @@ import { RestaurantService } from '../../core/services/restaurant.service';
   templateUrl: './restaurant-info.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RestaurantInfoComponent implements OnInit {
+export class RestaurantInfoComponent implements OnInit, AfterViewInit, OnDestroy {
   private readonly restaurantService = inject(RestaurantService);
   private readonly mockDataService = inject(MockDataService);
   private readonly route = inject(ActivatedRoute);
+  private readonly destroyRef = inject(DestroyRef);
+
+  @ViewChild('mapContainer') mapContainer?: ElementRef<HTMLDivElement>;
 
   isLoading = signal(true);
+
+  private map?: L.Map;
+  private marker?: L.Marker;
+  private mapReady = false;
+
+  readonly ArrowLeft = ArrowLeft;
+  readonly Phone = Phone;
+  readonly Globe = Globe;
 
   restaurantName = computed(() => this.restaurantService.restaurant()?.name ?? 'Restaurante');
   restaurantSlug = signal<string>('');
 
-  // Theme detection based on template_id
-  readonly TEMPLATE_IDS = TEMPLATE_IDS;
   themeClass = computed(() => {
     const templateId = this.restaurantService.restaurant()?.template_id;
     switch (templateId) {
@@ -48,15 +74,8 @@ export class RestaurantInfoComponent implements OnInit {
     }
   });
 
-  // Icons
-  Clock = Clock;
-  MapPin = MapPin;
-  Phone = Phone;
-  Globe = Globe;
-  ArrowLeft = ArrowLeft;
-  Flame = Flame;
+  location = computed(() => this.restaurantService.restaurant()?.location ?? null);
 
-  // Business hours data from service
   businessHours = computed(() => {
     const hours = this.restaurantService.businessHours();
     if (!hours) return [];
@@ -70,13 +89,12 @@ export class RestaurantInfoComponent implements OnInit {
       sunday: 'Domingo',
     };
     return Object.entries(hours).map(([key, value]: [string, any]) => ({
-      day: dayMap[key] || key,
+      day: dayMap[key] ?? key,
       hours: value.isOpen ? `${value.open} - ${value.close}` : 'Cerrado',
-      isOpen: value.isOpen,
+      isOpen: value.isOpen as boolean,
     }));
   });
 
-  // Contact info from service
   contactInfo = computed(() => {
     const restaurant = this.restaurantService.restaurant();
     return {
@@ -86,34 +104,32 @@ export class RestaurantInfoComponent implements OnInit {
     };
   });
 
-  // Social media from service
   socialMedia = computed(() => {
     const sm = this.restaurantService.socialMedia();
     if (!sm) return [];
-    const result = [];
-    if (sm.facebook) result.push({ name: 'Facebook', icon: 'facebook', url: sm.facebook });
-    if (sm.instagram) result.push({ name: 'Instagram', icon: 'instagram', url: sm.instagram });
-    if (sm.tiktok) result.push({ name: 'TikTok', icon: 'tiktok', url: sm.tiktok });
+    const result: { name: string; url: string }[] = [];
+    if (sm.facebook) result.push({ name: 'Facebook', url: sm.facebook });
+    if (sm.instagram) result.push({ name: 'Instagram', url: sm.instagram });
+    if (sm.tiktok) result.push({ name: 'TikTok', url: sm.tiktok });
     return result;
   });
 
-  // Description from settings
   description = computed(() => this.restaurantService.settings()?.description ?? '');
-
-  // Tags from settings
   tags = computed(() => this.restaurantService.settings()?.tags ?? []);
 
-  ngOnInit() {
-    this.route.paramMap.subscribe((params) => {
-      const slug = params.get('slug') || 'restaurante-gran-gourmet-1';
+  ngOnInit(): void {
+    const sub = this.route.paramMap.subscribe((params) => {
+      const slug = params.get('slug') ?? 'restaurante-gran-gourmet-1';
       this.restaurantSlug.set(slug);
       this.isLoading.set(true);
+      this.destroyMap();
 
-      // Cargar datos del restaurante
       this.mockDataService.getRestaurantData(slug).subscribe({
         next: (res) => {
           this.restaurantService.setRestaurantData(res);
           this.isLoading.set(false);
+          this.mapReady = true;
+          setTimeout(() => this.tryInitMap(), 0);
         },
         error: (err) => {
           console.error('Error loading restaurant info:', err);
@@ -121,5 +137,48 @@ export class RestaurantInfoComponent implements OnInit {
         },
       });
     });
+
+    this.destroyRef.onDestroy(() => sub.unsubscribe());
+  }
+
+  ngAfterViewInit(): void {
+    if (this.mapReady) {
+      setTimeout(() => this.tryInitMap(), 0);
+    }
+  }
+
+  ngOnDestroy(): void {
+    this.destroyMap();
+  }
+
+  private tryInitMap(): void {
+    const loc = this.location();
+    if (!loc || !this.mapContainer?.nativeElement || this.map) return;
+    this.initMap(loc);
+  }
+
+  private initMap(loc: { lat: number; lng: number }): void {
+    this.map = L.map(this.mapContainer!.nativeElement, {
+      center: [loc.lat, loc.lng],
+      zoom: 15,
+      scrollWheelZoom: false,
+    });
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {}).addTo(this.map);
+
+    this.marker = L.marker([loc.lat, loc.lng])
+      .addTo(this.map)
+      .bindPopup(this.restaurantName())
+      .openPopup();
+
+    setTimeout(() => this.map?.invalidateSize(), 100);
+  }
+
+  private destroyMap(): void {
+    if (this.map) {
+      this.map.remove();
+      this.map = undefined;
+      this.marker = undefined;
+    }
   }
 }

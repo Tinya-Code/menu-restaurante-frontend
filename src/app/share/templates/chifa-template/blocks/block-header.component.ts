@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ChifaTitleComponent } from '../components/chifa-title/chifa-title.component';
+import { ChifaHeaderTitleComponent } from '../components/chifa-header-title/chifa-header-title.component';
 
 @Component({
   selector: 'app-block-header',
   standalone: true,
-  imports: [CommonModule, ChifaTitleComponent],
+  imports: [CommonModule, ChifaHeaderTitleComponent],
   template: `
     <div class="relative flex justify-center items-center py-6 md:py-12 rounded-t-sm translate-y-1 px-4  overflow-hidden   ">
       <div
@@ -26,7 +26,7 @@ import { ChifaTitleComponent } from '../components/chifa-title/chifa-title.compo
       <!-- Top Cultural Graphic (The Gato) -->
       <div  class=" relative flex justify-center items-center md:min-h-70 min-h-50 rounded-full  md:h-130 md:w-130 w-110 h-110">
         <img src="/template-chifa-images/decoracion-fondo-letras.svg" alt="" class="absolute select-none  -z-10 left-0 right-0 w-full h-130 bg-no-repeat bg-center">
-     <app-chifa-title [title]="title()" [subTitle]="subTitle()" variant="header"></app-chifa-title>
+     <app-chifa-header-title [title]="title()" [subTitle]="subTitle()"></app-chifa-header-title>
       </div>
 
   

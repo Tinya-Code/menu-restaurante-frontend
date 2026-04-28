@@ -13,7 +13,6 @@ import { LayoutScaleComponent } from '../../layout/layout-scale/layout-scale';
     PolleriaCard,
     PolleriaHeader,
     PolleriaFooter,
-    Border,
     LayoutScaleComponent
   ],
   templateUrl: './index.html',

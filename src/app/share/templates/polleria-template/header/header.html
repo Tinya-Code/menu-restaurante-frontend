@@ -31,19 +31,6 @@
     <p class="text-lg md:text-xl text-white/80 italic mb-8 max-w-md">Sabor inigualable a la leña</p>
 
     <!-- Botón Más información -->
-
-          <div class="flex items-center gap-4">
-                <a
-      [routerLink]="['./info']"
-      class="group flex items-center gap-3 px-8 py-3 border-2 border-white/80 text-white rounded-full font-semibold uppercase tracking-wider text-sm transition-all duration-300 hover:bg-white hover:text-secondary hover:border-white"
-    >
-      <lucide-icon
-        [img]="Info"
-        class="w-5 h-5 transition-transform group-hover:scale-110"
-      ></lucide-icon>
-      <span>Más información</span>
-    </a>
-          <app-share-button></app-share-button>
-        </div>
+    <app-header-actions></app-header-actions>
   </div>
 </div>

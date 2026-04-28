@@ -31,6 +31,7 @@ import { CevicheriaProductDetail } from '../../share/templates/cevicheria-templa
 import { ComidaRapidaProductDetail } from '../../share/templates/comida-rapida-template/product-detail/product-detail';
 import { CategoryNav } from '../../share/components/category-nav/category-nav.component';
 import { WhatsAppButton } from '../../share/components/whatsapp-button/whatsapp-button.component';
+import { RestaurantClosedModalComponent } from '../../share/components/restaurant-closed-modal/restaurant-closed-modal.component';
 
 @Component({
   selector: 'app-menu',
@@ -48,10 +49,10 @@ import { WhatsAppButton } from '../../share/components/whatsapp-button/whatsapp-
     ComidaRapidaProductDetail,
     CategoryNav,
     LucideAngularModule,
-    TimeFormatPipe,
     WhatsAppButton, 
     SidebarCart,
-    CartTriggerComponent
+    CartTriggerComponent,
+    RestaurantClosedModalComponent
   ],
   templateUrl: './menu.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -79,6 +80,10 @@ export class Menu implements OnInit {
   selectedProduct = signal<Product | null>(null);
   activeCategoryId = signal<string | null>(null);
   isLoading = signal(true);
+  
+  // Combos y Promociones
+  combos = signal<any[]>([]);
+  promotions = signal<any[]>([]);
 
   ngOnInit(): void {
     // Escuchamos cambios en la ruta para cargar los datos de forma modular
@@ -89,12 +94,16 @@ export class Menu implements OnInit {
       forkJoin({
         restaurant: this.mockDataService.getRestaurantData(slug),
         categories: this.mockDataService.getMenuCategories(slug),
-        template: this.mockDataService.getTemplateData(slug)
+        template: this.mockDataService.getTemplateData(slug),
+        combos: this.mockDataService.getCombos(slug),
+        promotions: this.mockDataService.getPromotions(slug)
       }).subscribe({
         next: (res) => {
           this.restaurantService.setRestaurantData(res.restaurant);
           this.menuService.setMenuCategories(res.categories);
           this.restaurantService.setTemplateData(res.template);
+          this.combos.set(res.combos?.data || []);
+          this.promotions.set(res.promotions?.data || []);
           this.isLoading.set(false);
         },
         error: (err) => {
@@ -118,9 +127,9 @@ export class Menu implements OnInit {
   /**
    * Agrega un producto al carrito.
    */
-  addToCart(product: Product): void {
+  addToCart(item: Product | any): void {
     this.cart.addItem({
-      ...product,
+      ...item,
       quantity: 1
     } as any);
   }

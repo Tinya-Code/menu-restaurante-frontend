@@ -2,15 +2,13 @@ import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core
 import { CommonModule } from '@angular/common';
 import { Cart } from '../../../core/services/cart.service';
 import { PrecioPipe } from '../../pipes/precio.pipe';
-import { TimeFormatPipe } from '../../pipes/time-format.pipe';
-import { LucideAngularModule, ArrowRight, Clock } from 'lucide-angular';
+import { LucideAngularModule, ArrowRight } from 'lucide-angular';
 import { BusinessHoursService } from '../../../core/services/business-hours.service';
-import { ModalComponent } from '../modal/modal.component';
 
 @Component({
   selector: 'app-cart-trigger',
   standalone: true,
-  imports: [CommonModule, PrecioPipe, LucideAngularModule, ModalComponent, TimeFormatPipe],
+  imports: [CommonModule, PrecioPipe, LucideAngularModule],
   templateUrl: './cart-trigger.component.html',
   styles: ``,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -23,14 +21,11 @@ export class CartTriggerComponent {
   private readonly _businessHours = inject(BusinessHoursService);
 
   readonly ArrowRight = ArrowRight;
-  readonly Clock = Clock;
 
   // Exposición de signals del servicio
   readonly count = this._cart.count;
   readonly total = this._cart.total;
   readonly isEmpty = this._cart.isEmpty;
-  readonly isRestaurandClosed = this._cart.isBusinessClosed;
-  readonly businessHours = this._businessHours.hours;
 
   /**
    * Abre el carrito si está abierto el negocio.
@@ -41,12 +36,5 @@ export class CartTriggerComponent {
       return;
     }
     this._cart.open();
-  }
-
-  /**
-   * Cierra el modal de negocio cerrado.
-   */
-  closeClosedModal(): void {
-    this._cart.closeBusinessClosedModal();
   }
 }

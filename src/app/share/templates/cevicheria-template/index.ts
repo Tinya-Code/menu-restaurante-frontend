@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { Product } from '../../../core/models/product.model';
 import { CevicheriaCardComponent } from './cevicheria-card/cevicheria-card';
 import { CevicheriaHeader } from './header/header';
@@ -8,7 +8,7 @@ import { CevicheriaFooter } from './footer/footer';
 @Component({
   selector: 'app-cevicheria-template',
   standalone: true,
-  imports: [CommonModule, CevicheriaCardComponent, CevicheriaHeader, CevicheriaFooter],
+  imports: [CevicheriaCardComponent, CevicheriaHeader, CevicheriaFooter],
   template: `
     <app-cevicheria-header [restaurantName]="restaurantName()"></app-cevicheria-header>
     

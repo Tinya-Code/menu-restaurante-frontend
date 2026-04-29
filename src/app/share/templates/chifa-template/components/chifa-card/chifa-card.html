@@ -18,35 +18,41 @@
         }
       </div>
     </div>
-    <div class="text-right">
-      <span
-        class="text-lg font-display text-transparent bg-clip-text bg-gradient-to-b from-primary-text from-50% to-secondary-text to-50%"
-        >{{ product().price | precio }}</span
-      >
-    </div>
+    @if (product().description) {
+      <div class="text-right">
+        <span
+          class="text-lg font-display text-transparent bg-clip-text bg-gradient-to-b from-primary-text from-50% to-secondary-text to-50%"
+          >{{ product().price | precio }}</span
+        >
+      </div>
+    } @else {
+      <div class="flex items-center gap-2">
+        <span
+          class="text-lg font-display text-transparent bg-clip-text bg-gradient-to-b from-primary-text from-50% to-secondary-text to-50%"
+          >{{ product().price | precio }}</span
+        >
+        <app-add-button
+          text="+"
+          size="compact"
+          (clicked)="addToCart.emit(product())"
+        ></app-add-button>
+      </div>
+    }
   </div>
-  <div class="relative z-10 flex justify-between items-start gap-2 pt-3">
-    <p
-      class="text-secondary-text font-body text-sm leading-relaxed max-w-[60%] border-t border-secondary/10 italic"
-    >
-      {{
-        product().description ||
-          'Un clásico del Chifa preparado con los secretos mejor guardados de nuestra cocina.'
-      }}
-    </p>
-    <div class="flex gap-2">
-      <button
-        (click)="onBuyNow($event)"
-        class="bg-gradient-to-b from-accent from-50% to-accent-muted to-50% text-md text-primary-text uppercase font-display py-2 px-4 active:scale-95 transition-all duration-300 rounded-sm"
+  @if (product().description) {
+    <div class="relative z-10 flex justify-between items-start gap-2 pt-3">
+      <p
+        class="text-secondary-text font-body text-sm leading-relaxed max-w-[60%] border-t border-secondary/10 italic"
       >
-        comprar ya
-      </button>
-      <button
-        (click)="onAddDirectly($event)"
-        class="bg-gradient-to-b from-accent from-50% to-accent-muted to-50% text-md text-primary-text px-3 py-1 uppercase font-display active:scale-95 transition-all duration-300 rounded-sm"
-      >
-        +
-      </button>
+        {{ product().description }}
+      </p>
+      <div class="flex gap-2 ml-auto">
+        <app-add-button
+          text="+"
+          size="compact"
+          (clicked)="addToCart.emit(product())"
+        ></app-add-button>
+      </div>
     </div>
-  </div>
+  }
 </div>

@@ -1,12 +1,12 @@
 import { Component, inject, computed, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { RestaurantService } from '../../../core/services/restaurant.service';
 import { LucideAngularModule, MessageCircle } from 'lucide-angular';
 
 @Component({
   selector: 'app-whatsapp-button',
   standalone: true,
-  imports: [CommonModule, LucideAngularModule],
+  imports: [LucideAngularModule],
   templateUrl: './whatsapp-button.component.html'
 })
 export class WhatsAppButton {

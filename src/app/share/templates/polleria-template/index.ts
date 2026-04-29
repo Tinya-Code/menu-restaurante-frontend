@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { Product } from '../../../core/models/product.model';
 import { Border } from './border/border';
@@ -9,13 +9,11 @@ import { LayoutScaleComponent } from '../../layout/layout-scale/layout-scale';
 @Component({
   selector: 'app-polleria-template',
   imports: [
-    CommonModule,
     PolleriaCard,
     PolleriaHeader,
     PolleriaFooter,
-    Border,
     LayoutScaleComponent
-  ],
+],
   templateUrl: './index.html',
   styleUrl: './index.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

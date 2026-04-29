@@ -1,10 +1,10 @@
 import { Component, input, ChangeDetectionStrategy } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'app-tooltip-button',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './tooltip-button.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })

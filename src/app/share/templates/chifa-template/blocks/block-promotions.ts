@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { PromotionCardComponent, Promotion } from '../components/promotion-card/promotion-card';
 import { ChifaSectionTitleComponent } from '../components/chifa-section-title/chifa-section-title.component';
 import { SliderComponent } from '../../../components/slider/slider.component';
@@ -7,7 +7,7 @@ import { SliderComponent } from '../../../components/slider/slider.component';
 @Component({
   selector: 'app-block-promotions',
   standalone: true,
-  imports: [CommonModule, PromotionCardComponent, ChifaSectionTitleComponent, SliderComponent],
+  imports: [PromotionCardComponent, ChifaSectionTitleComponent, SliderComponent],
   template: `
     @if (promotions().length > 0) {
       <section class="relative py-12 px-8">

@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { ComboCardComponent, Combo } from '../components/combo-card/combo-card';
 import { ChifaSectionTitleComponent } from '../components/chifa-section-title/chifa-section-title.component';
 import { SliderComponent } from '../../../components/slider/slider.component';
@@ -7,7 +7,7 @@ import { SliderComponent } from '../../../components/slider/slider.component';
 @Component({
   selector: 'app-block-combos',
   standalone: true,
-  imports: [CommonModule, ComboCardComponent, ChifaSectionTitleComponent, SliderComponent],
+  imports: [ComboCardComponent, ChifaSectionTitleComponent, SliderComponent],
   template: `
     @if (combos().length > 0) {
       <section class="relative py-12 px-8">

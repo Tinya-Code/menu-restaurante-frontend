@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import {
   Clock,
@@ -15,7 +15,7 @@ import { RestaurantService } from '../../../../core/services/restaurant.service'
 @Component({
   selector: 'app-polleria-footer',
   standalone: true,
-  imports: [CommonModule, LucideAngularModule],
+  imports: [LucideAngularModule],
   templateUrl: './footer.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

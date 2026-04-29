@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component, input, output, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { LucideAngularModule, ChevronLeft, ChevronRight } from 'lucide-angular';
 
 @Component({
   selector: 'app-slider',
   standalone: true,
-  imports: [CommonModule, LucideAngularModule],
+  imports: [LucideAngularModule],
   templateUrl: './slider.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

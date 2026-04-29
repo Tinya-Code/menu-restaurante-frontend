@@ -1,13 +1,13 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { LucideAngularModule, Waves, Anchor } from 'lucide-angular';
 
-import { HeaderActionsComponent } from '../../../components/header-actions/header-actions.component';
+import { HeaderActionsComponent } from '../../../../feature/restaurant/components/header-actions/header-actions.component';
 
 @Component({
   selector: 'app-cevicheria-header',
   standalone: true,
-  imports: [CommonModule, LucideAngularModule, HeaderActionsComponent],
+  imports: [LucideAngularModule, HeaderActionsComponent],
   template: `
     <header
       class="relative bg-linear-to-r from-secondary to-secondary/90 p-10 mb-12 rounded-b-5xl shadow-2xl overflow-hidden min-h-[250px] flex items-center"
@@ -37,7 +37,11 @@ import { HeaderActionsComponent } from '../../../components/header-actions/heade
           </p>
         </div>
 
-        <app-header-actions [showInfoButton]="false" [showShareButton]="true"></app-header-actions>
+        <app-header-actions
+          [showInfoButton]="true"
+          [showShareButton]="true"
+          theme="cevicheria"
+        ></app-header-actions>
       </div>
     </header>
   `,

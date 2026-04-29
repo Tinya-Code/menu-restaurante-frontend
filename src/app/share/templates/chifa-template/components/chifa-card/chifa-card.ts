@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { LucideAngularModule, ThumbsUp, Utensils, Star, Plus } from 'lucide-angular';
 import { Product } from '../../../../../core/models/product.model';
 import { PrecioPipe } from '../../../../pipes/precio.pipe';
@@ -9,7 +9,7 @@ import { AddButtonComponent } from '../add-button/add-button.component';
 @Component({
   selector: 'app-chifa-card',
   standalone: true,
-  imports: [CommonModule, LucideAngularModule, PrecioPipe, TooltipButton, AddButtonComponent],
+  imports: [LucideAngularModule, PrecioPipe, TooltipButton, AddButtonComponent],
   templateUrl: './chifa-card.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

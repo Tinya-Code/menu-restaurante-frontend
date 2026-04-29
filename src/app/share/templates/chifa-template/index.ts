@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, input, output, computed } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { Product } from '../../../core/models/product.model';
 import { CategoryData } from '../../../core/models/menu.model';
 import { ChifaHeader } from './components/header/header';
@@ -26,7 +26,6 @@ import { BlockPromotionsComponent } from './blocks/block-promotions';
   selector: 'app-chifa-template',
   standalone: true,
   imports: [
-    CommonModule,
     ChifaHeader,
     ChifaFooter,
     LayoutScaleComponent,
@@ -57,19 +56,13 @@ import { BlockPromotionsComponent } from './blocks/block-promotions';
 
         @if (hasAnyCategories() || hasCombos() || hasPromotions()) {
           <div
-            class="bg-[url('/template-chifa-images/contorno-laterales.svg')]  h-full w-auto  mx-2"
+            class="bg-[url('/assets/template-chifa-images/contorno-laterales.svg')]  h-full w-auto  mx-2"
           >
             <div class="flex flex-col gap-0  "></div>
-            <app-block-combos
-              [combos]="combos()"
-              (addToCart)="addToCart.emit($event)"
-            >
+            <app-block-combos [combos]="combos()" (addToCart)="addToCart.emit($event)">
             </app-block-combos>
 
-            <app-block-promotions
-              [promotions]="promotions()"
-              (addToCart)="addToCart.emit($event)"
-            >
+            <app-block-promotions [promotions]="promotions()" (addToCart)="addToCart.emit($event)">
             </app-block-promotions>
 
             <app-block-1

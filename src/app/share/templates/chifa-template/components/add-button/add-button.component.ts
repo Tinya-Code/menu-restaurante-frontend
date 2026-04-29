@@ -1,16 +1,15 @@
 import { Component, input, output, ChangeDetectionStrategy } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-add-button',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './add-button.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddButtonComponent {
   // Button text
-  text = input<string>('Agregar');
+  text = input<string>('Agregar +');
 
   // Button size variant
   size = input<'full' | 'compact'>('full');

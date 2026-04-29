@@ -1,13 +1,13 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { LucideAngularModule, Utensils } from 'lucide-angular';
 
-import { HeaderActionsComponent } from '../../../../components/header-actions/header-actions.component';
+import { HeaderActionsComponent } from '../../../../../feature/restaurant/components/header-actions/header-actions.component';
 
 @Component({
   selector: 'app-chifa-header',
   standalone: true,
-  imports: [CommonModule, LucideAngularModule, HeaderActionsComponent],
+  imports: [LucideAngularModule, HeaderActionsComponent],
   template: `
     <header
       class="relative bg-black/95 border-b-4 border-primary p-6 mb-8 rounded-b-5xl  min-h-35 overflow-hidden"
@@ -38,7 +38,11 @@ import { HeaderActionsComponent } from '../../../../components/header-actions/he
         </div>
 
         <div class="flex items-center gap-4">
-          <app-header-actions [showInfoButton]="true" [showShareButton]="true"></app-header-actions>
+          <app-header-actions
+            [showInfoButton]="true"
+            [showShareButton]="true"
+            theme="chifa"
+          ></app-header-actions>
         </div>
       </div>
     </header>

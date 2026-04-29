@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, input, output, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { LucideAngularModule, ShoppingBag, Plus, Minus, X } from 'lucide-angular';
 import { Product } from '../../../../core/models/product.model';
 import { PrecioPipe } from '../../../pipes/precio.pipe';
@@ -7,7 +7,7 @@ import { PrecioPipe } from '../../../pipes/precio.pipe';
 @Component({
   selector: 'app-comida-rapida-product-detail',
   standalone: true,
-  imports: [CommonModule, LucideAngularModule, PrecioPipe],
+  imports: [LucideAngularModule, PrecioPipe],
   templateUrl: './product-detail.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

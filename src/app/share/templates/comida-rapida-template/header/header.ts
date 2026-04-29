@@ -1,13 +1,13 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { LucideAngularModule, Zap, Clock } from 'lucide-angular';
 
-import { HeaderActionsComponent } from '../../../components/header-actions/header-actions.component';
+import { HeaderActionsComponent } from '../../../../feature/restaurant/components/header-actions/header-actions.component';
 
 @Component({
   selector: 'app-comida-rapida-header',
   standalone: true,
-  imports: [CommonModule, LucideAngularModule, HeaderActionsComponent],
+  imports: [LucideAngularModule, HeaderActionsComponent],
   template: `
     <header
       class="relative bg-primary p-6 mb-8 rounded-3xl shadow-premium transform -skew-y-1 overflow-hidden"
@@ -41,7 +41,11 @@ import { HeaderActionsComponent } from '../../../components/header-actions/heade
           </div>
         </div>
 
-        <app-header-actions [showInfoButton]="false" [showShareButton]="true"></app-header-actions>
+        <app-header-actions
+          [showInfoButton]="true"
+          [showShareButton]="true"
+          theme="comida-rapida"
+        ></app-header-actions>
       </div>
     </header>
   `,

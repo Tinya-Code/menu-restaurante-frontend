@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component, OnInit, signal, computed } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { advertisementResponse } from '../../../data/advertisement';
 
 @Component({
   selector: 'app-advertisement',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './advertisement.html',
   styles: ``,
   changeDetection: ChangeDetectionStrategy.OnPush,

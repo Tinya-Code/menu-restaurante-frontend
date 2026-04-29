@@ -1,12 +1,12 @@
 import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { Product } from '../../../../core/models/product.model';
 import { ChifaCardComponent } from '../components/chifa-card/chifa-card';
 import { ChifaSectionTitleComponent } from '../components/chifa-section-title/chifa-section-title.component';
 @Component({
   selector: 'app-block-1',
   standalone: true,
-  imports: [CommonModule, ChifaCardComponent, ChifaSectionTitleComponent],
+  imports: [ChifaCardComponent, ChifaSectionTitleComponent],
   template: `
     @if (categories().length > 0) {
       <section class="relative py-12 px-8 ">

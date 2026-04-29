@@ -133,11 +133,11 @@ export const templateResponse = {
         block1: [
           {
             cloudinary_id: 'cld_seg1_001',
-            url: '/template-chifa-images/images-google/entrada.png',
+            url: '/assets/template-chifa-images/images-google/entrada.png',
           },
           {
             cloudinary_id: 'cld_seg1_002',
-            url: '/template-chifa-images/images-google/plato-fondo-2.png',
+            url: '/assets/template-chifa-images/images-google/plato-fondo-2.png',
           },
         ],
       },
@@ -145,11 +145,11 @@ export const templateResponse = {
         block2: [
           {
             cloudinary_id: 'cld_seg2_001',
-            url: '/template-chifa-images/images-google/plato-fondo-1.png',
+            url: '/assets/template-chifa-images/images-google/plato-fondo-1.png',
           },
           {
             cloudinary_id: 'cld_seg2_002',
-            url: '/template-chifa-images/images-google/plato-fondo-3.png',
+            url: '/assets/template-chifa-images/images-google/plato-fondo-3.png',
           },
         ],
       },
@@ -157,11 +157,11 @@ export const templateResponse = {
         block3: [
           {
             cloudinary_id: 'cld_seg3_001',
-            url: '/template-chifa-images/images-google/compartir-1.png',
+            url: '/assets/template-chifa-images/images-google/compartir-1.png',
           },
           {
             cloudinary_id: 'cld_seg3_002',
-            url: '/template-chifa-images/images-google/compartir-2.png',
+            url: '/assets/template-chifa-images/images-google/compartir-2.png',
           },
         ],
       },
@@ -169,11 +169,11 @@ export const templateResponse = {
         block4: [
           {
             cloudinary_id: 'cld_seg4_001',
-            url: '/template-chifa-images/images-google/bebidas-1.png',
+            url: '/assets/template-chifa-images/images-google/bebidas-1.png',
           },
           {
             cloudinary_id: 'cld_seg4_002',
-            url: '/template-chifa-images/images-google/bebidas-2.png',
+            url: '/assets/template-chifa-images/images-google/bebidas-2.png',
           },
         ],
       },
@@ -181,7 +181,11 @@ export const templateResponse = {
         block5: [
           {
             cloudinary_id: 'cld_seg5_001',
-            url: '/template-chifa-images/gato.svg',
+            url: '/assets/template-chifa-images/images-google/postre-1.png',
+          },
+          {
+            cloudinary_id: 'cld_seg5_001',
+            url: '/assets/template-chifa-images/images-google/postre-2.png',
           },
         ],
       },
@@ -189,11 +193,11 @@ export const templateResponse = {
         block6: [
           {
             cloudinary_id: 'cld_seg6_001',
-            url: '/template-chifa-images/images-google/bebidas-1.png',
+            url: '/assets/template-chifa-images/images-google/bebidas-1.png',
           },
           {
             cloudinary_id: 'cld_seg6_002',
-            url: '/template-chifa-images/images-google/bebidas-2.png',
+            url: '/assets/template-chifa-images/images-google/bebidas-2.png',
           },
         ],
       },
@@ -201,7 +205,7 @@ export const templateResponse = {
         block7: [
           {
             cloudinary_id: 'cld_seg7_001',
-            url: '/template-chifa-images/images-google/cocteles.png',
+            url: '/assets/template-chifa-images/images-google/cocteles.png',
           },
         ],
       },
@@ -1415,6 +1419,8 @@ export const promotionsResponse = {
       description: 'Lleva 6 wantanes fritos y paga solo 3',
       price: 54.0,
       discountedPrice: 27.0,
+      cloudinary_id: 'cld_promo_001',
+      url: '/assets/template-chifa-images/images-google/entrada.png',
     },
     {
       id: 'promo-2',
@@ -1422,6 +1428,8 @@ export const promotionsResponse = {
       description: 'Chaufa especial con pollo, cerdo y camarones con descuento',
       price: 42.0,
       discountedPrice: 33.6,
+      cloudinary_id: 'cld_promo_002',
+      url: '/assets/template-chifa-images/images-google/plato-fondo-1.png',
     },
     {
       id: 'promo-3',
@@ -1429,6 +1437,8 @@ export const promotionsResponse = {
       description: 'Pollo salteado con verduras en salsa de ostiones con bebida incluida',
       price: 45.0,
       discountedPrice: 38.0,
+      cloudinary_id: 'cld_promo_003',
+      url: '/assets/template-chifa-images/images-google/plato-fondo-2.png',
     },
     {
       id: 'promo-4',
@@ -1436,6 +1446,24 @@ export const promotionsResponse = {
       description: '4 platos a elección por el precio de 3',
       price: 140.0,
       discountedPrice: 105.0,
+      cloudinary_id: 'cld_promo_004',
+      url: '/assets/template-chifa-images/images-google/compartir-1.png',
+    },
+  ],
+};
+
+export const bannerResponse = {
+  status: 'success',
+  code: 200,
+  message: 'Banners obtenidos correctamente',
+  data: [
+    {
+      cloudinary_id: 'cld_banner_001',
+      url: '/assets/template-chifa-images/banner-1.jpeg',
+    },
+    {
+      cloudinary_id: 'cld_banner_002',
+      url: '/assets/template-chifa-images/banner-2.jpeg',
     },
   ],
 };

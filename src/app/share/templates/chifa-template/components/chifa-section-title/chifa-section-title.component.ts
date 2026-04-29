@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { LucideAngularModule, Waves } from 'lucide-angular';
 
 @Component({
   selector: 'app-chifa-section-title',
   standalone: true,
-  imports: [CommonModule, LucideAngularModule],
+  imports: [LucideAngularModule],
   template: `
     <div class="flex flex-col  items-center justify-center z-10 gap-2 md:gap-4 mb-8">
       <div class="flex flex-col items-center justify-center mx-auto  text-center">

@@ -1,7 +1,18 @@
 /**
- * Interfaz genérica para las respuestas de la API.
+ * Interfaz genérica para las respuestas de la API (Backend API format).
  */
 export interface ApiResponse<T> {
+  data: T;
+  message: string;
+  success: boolean;
+  timestamp: string;
+}
+
+/**
+ * Legacy interface for backward compatibility.
+ * @deprecated Use ApiResponse instead
+ */
+export interface ApiResponseLegacy<T> {
   data: T;
   message?: string;
   status: number;

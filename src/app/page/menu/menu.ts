@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject, signal, effect, OnInit } from '@angular/core';
-import { forkJoin } from 'rxjs';
+import { forkJoin, of } from 'rxjs';
 import { SidebarCart } from '../../share/components/sidebar-cart/sidebar-cart.component';
 import { CartTriggerComponent } from '../../share/components/cart-trigger/cart-trigger.component';
 
@@ -86,20 +86,27 @@ export class Menu implements OnInit {
       const slug = params.get('slug') || 'restaurante-gran-gourmet-1';
       this.isLoading.set(true);
       // Usamos forkJoin para evitar condiciones de carrera en el DataStore
+      // BackendDataService se usa para categorías (datos dinámicos)
+      // MockDataService se mantiene para restaurante y template (configuración estática)
+      // Test data IDs from seed
+      const MENU_ID = '550e8400-e29b-41d4-a716-446655440005';
+
       forkJoin({
         restaurant: this.mockDataService.getRestaurantData(slug),
-        categories: this.mockDataService.getMenuCategories(slug),
+        categories: this.menuService.getFullMenu(MENU_ID),
         template: this.mockDataService.getTemplateData(slug)
       }).subscribe({
         next: (res) => {
           this.restaurantService.setRestaurantData(res.restaurant);
-          this.menuService.setMenuCategories(res.categories);
+          // Backend returns array of { category, products }
+          this.menuService.setMenuCategories({ data: res.categories });
           this.restaurantService.setTemplateData(res.template);
           this.isLoading.set(false);
         },
         error: (err) => {
-          console.error('Error loading menu:', err);
+          console.error('Error loading menu from backend:', err);
           this.isLoading.set(false);
+          // TODO: Show error message to user
         }
       });
     });

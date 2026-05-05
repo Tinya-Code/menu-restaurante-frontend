@@ -1,47 +1,45 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  inject,
-  signal,
-  effect,
-  OnInit,
   DestroyRef,
+  inject,
+  OnInit,
+  signal,
 } from '@angular/core';
-import { forkJoin, timeout, catchError, of } from 'rxjs';
-import { SidebarCart } from '../../components/sidebar-cart/sidebar-cart.component';
+import { catchError, forkJoin, of, timeout } from 'rxjs';
 import { CartTriggerComponent } from '../../components/cart-trigger/cart-trigger.component';
+import { SidebarCart } from '../../components/sidebar-cart/sidebar-cart.component';
 
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
-import { RestaurantService } from '../../services/restaurant.service';
-import { RestaurantService as CoreRestaurantService } from '../../../../core/services/restaurant.service';
-import { MenuService } from '../../../../core/services/menu.service';
-import { BusinessHoursService } from '../../../../core/services/business-hours.service';
-import { ProductService } from '../../../../core/services/product.service';
-import { Cart } from '../../../../core/services/cart.service';
-import { TimeFormatPipe } from '../../../../share/pipes/time-format.pipe';
-import { LucideAngularModule, Clock } from 'lucide-angular';
+import { Clock, LucideAngularModule } from 'lucide-angular';
 import { TEMPLATE_IDS } from '../../../../core/constants/template.constants';
+import { BusinessHoursService } from '../../../../core/services/business-hours.service';
+import { Cart } from '../../../../core/services/cart.service';
+import { MenuService } from '../../../../core/services/menu.service';
+import { ProductService } from '../../../../core/services/product.service';
+import { RestaurantService as CoreRestaurantService } from '../../../../core/services/restaurant.service';
+import { RestaurantService } from '../../services/restaurant.service';
 
 // Plantillas Temáticas
-import { PolleriaTemplate } from '../../../../share/templates/polleria-template';
-import { ChifaTemplate } from '../../../../share/templates/chifa-template';
 import { CevicheriaTemplate } from '../../../../share/templates/cevicheria-template';
+import { ChifaTemplate } from '../../../../share/templates/chifa-template';
 import { ComidaRapidaTemplate } from '../../../../share/templates/comida-rapida-template';
+import { PolleriaTemplate } from '../../../../share/templates/polleria-template';
 
-import { ModalComponent } from '../../components/modal/modal.component';
 import { Product } from '../../../../core/models/product.model';
+import { ModalComponent } from '../../components/modal/modal.component';
 
 // Componentes de Detalle por Plantilla
-import { ChifaProductDetail } from '../../../../share/templates/chifa-template/components/product-detail/product-detail';
-import { PolleriaProductDetail } from '../../../../share/templates/polleria-template/product-detail/product-detail';
-import { CevicheriaProductDetail } from '../../../../share/templates/cevicheria-template/product-detail/product-detail';
-import { ComidaRapidaProductDetail } from '../../../../share/templates/comida-rapida-template/product-detail/product-detail';
-import { CategoryNav } from '../../components/category-nav/category-nav.component';
-import { WhatsAppButton } from '../../../../share/components/whatsapp-button/whatsapp-button.component';
-import { RestaurantClosedModalComponent } from '../../components/restaurant-closed-modal/restaurant-closed-modal.component';
-import { BannerModalComponent } from '../../components/banner-modal/banner-modal.component';
 import { LoadingComponent } from '../../../../share/components/loading/loading.component';
+import { WhatsAppButton } from '../../../../share/components/whatsapp-button/whatsapp-button.component';
+import { CevicheriaProductDetail } from '../../../../share/templates/cevicheria-template/product-detail/product-detail';
+import { ChifaProductDetail } from '../../../../share/templates/chifa-template/components/product-detail/product-detail';
+import { ComidaRapidaProductDetail } from '../../../../share/templates/comida-rapida-template/product-detail/product-detail';
+import { PolleriaProductDetail } from '../../../../share/templates/polleria-template/product-detail/product-detail';
+import { BannerModalComponent } from '../../components/banner-modal/banner-modal.component';
+import { CategoryNav } from '../../components/category-nav/category-nav.component';
+import { RestaurantClosedModalComponent } from '../../components/restaurant-closed-modal/restaurant-closed-modal.component';
 
 @Component({
   selector: 'app-menu',
@@ -109,9 +107,12 @@ export class Menu implements OnInit {
       this.isLoading.set(true);
       this.loadingStartTime = Date.now();
       // Usamos forkJoin para evitar condiciones de carrera en el DataStore
+      // Test data IDs from seed
+      const MENU_ID = '550e8400-e29b-41d4-a716-446655440005';
+
       forkJoin({
         restaurant: this.restaurantDataService.getRestaurantData(slug),
-        categories: this.restaurantDataService.getMenuCategories(slug),
+        categories: this.menuService.getFullMenu(MENU_ID),
         template: this.restaurantDataService.getTemplateData(slug),
         combos: this.restaurantDataService.getCombos(slug),
         promotions: this.restaurantDataService.getPromotions(slug),
@@ -123,20 +124,20 @@ export class Menu implements OnInit {
             console.error('Error loading menu data:', err);
             return of({
               restaurant: { data: null },
-              categories: { data: null },
+              categories: { data: null, message: '', success: false, timestamp: '' },
               template: { data: null },
               combos: { data: [] },
               promotions: { data: [] },
               banners: { data: [] },
             });
-          }),
+          })
         )
         .subscribe({
           next: (res) => {
             if (res.restaurant.data) {
               this.restaurantService.setRestaurantData(res.restaurant);
             }
-            if (res.categories.data) {
+            if (res?.categories?.data) {
               this.menuService.setMenuCategories(res.categories);
             }
             if (res.template.data) {

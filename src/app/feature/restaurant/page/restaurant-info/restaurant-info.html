@@ -1,0 +1,197 @@
+@if (isLoading()) {
+  <div class="flex min-h-screen items-center justify-center bg-white">
+    <div
+      class="h-8 w-8 animate-spin rounded-full border-2 border-primary/20 border-t-primary"
+    ></div>
+  </div>
+} @else {
+  <div
+    class="min-h-screen bg-background font-body transition-colors duration-500 pb-32"
+    [class]="themeClass()"
+    role="main"
+  >
+    <!-- Header Minimal -->
+    <nav class="sticky top-0 z-40 bg-background/90 backdrop-blur-sm">
+      <div class="mx-auto flex max-w-4xl items-center justify-between px-6 py-6">
+        <a
+          [routerLink]="['/menu', restaurantSlug()]"
+          class="flex items-center gap-2 text-secondary/50 transition-colors hover:text-secondary"
+        >
+          <lucide-icon [img]="ArrowLeft" class="h-4 w-4"></lucide-icon>
+          <span class="text-xs font-black uppercase tracking-widest">Regresar</span>
+        </a>
+        <button class="text-secondary/50 hover:text-secondary transition-colors">
+          <lucide-icon [img]="Share2" class="h-4 w-4"></lucide-icon>
+        </button>
+      </div>
+    </nav>
+
+    <main class="mx-auto max-w-4xl px-6">
+      <!-- Hero Section -->
+      <header class="mb-20 pt-8">
+        <h1
+          class="mb-6 text-6xl md:text-8xl font-display text-secondary leading-[0.9] tracking-tighter"
+        >
+          {{ restaurantName() }}
+        </h1>
+        @if (description()) {
+          <p class="max-w-2xl text-xl leading-relaxed text-secondary/60">
+            {{ description() }}
+          </p>
+        }
+
+        @if (tags().length > 0) {
+          <div class="mt-10 flex flex-wrap gap-x-6 gap-y-3">
+            @for (tag of tags(); track tag) {
+              <span class="text-[11px] font-black text-primary uppercase tracking-[0.2em]">
+                // {{ tag }}
+              </span>
+            }
+          </div>
+        }
+      </header>
+
+      <!-- Content Grid -->
+      <div class="space-y-24">
+        <!-- Ubicación Section -->
+        <section class="grid grid-cols-1 md:grid-cols-12 gap-12 border-t border-secondary/10 pt-12">
+          <div class="md:col-span-4">
+            <h2 class="text-xs font-black uppercase tracking-[0.3em] text-secondary/30 mb-2">
+              Ubicación
+            </h2>
+            <p class="text-2xl font-display text-secondary leading-tight">
+              {{ contactInfo().address }}
+            </p>
+            <a
+              href="https://maps.google.com/?q={{ contactInfo().address }}"
+              target="_blank"
+              class="mt-6 inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest text-primary hover:text-primary/70 transition-colors"
+            >
+              <span>Abrir Mapas</span>
+              <lucide-icon [img]="ExternalLink" class="h-3 w-3"></lucide-icon>
+            </a>
+          </div>
+          <div class="md:col-span-8">
+            @if (location()) {
+              <div
+                #mapContainer
+                class="h-96 w-full rounded-2xl bg-neutral-100 transition-all duration-1000 border border-secondary/5 z-10"
+                role="img"
+                aria-label="Mapa de ubicación"
+              ></div>
+            }
+          </div>
+        </section>
+
+        <!-- Horarios & Contacto Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-24 border-t border-secondary/10 pt-12">
+          <!-- Horarios -->
+          @if (businessHours().length > 0) {
+            <section>
+              <h2 class="text-xs font-black uppercase tracking-[0.3em] text-secondary/30 mb-8">
+                Horarios
+              </h2>
+              <div class="space-y-4">
+                @for (day of businessHours(); track day.day) {
+                  <div
+                    class="flex items-center justify-between pb-4 border-b border-secondary/5 last:border-0"
+                  >
+                    <span
+                      class="text-sm font-bold uppercase tracking-widest"
+                      [class]="day.isOpen ? 'text-secondary' : 'text-secondary/20'"
+                    >
+                      {{ day.day }}
+                    </span>
+                    <span
+                      class="text-sm font-black tabular-nums"
+                      [class]="day.isOpen ? 'text-secondary' : 'text-secondary/20'"
+                    >
+                      {{ day.isOpen ? day.hours : 'Cerrado' }}
+                    </span>
+                  </div>
+                }
+              </div>
+            </section>
+          }
+
+          <!-- Contacto & Redes -->
+          <div class="space-y-16">
+            <!-- Canales -->
+            <section>
+              <h2 class="text-xs font-black uppercase tracking-[0.3em] text-secondary/30 mb-8">
+                Contacto
+              </h2>
+              <div class="space-y-6">
+                @for (phone of contactInfo().phones; track phone) {
+                  <a
+                    href="tel:{{ phone }}"
+                    class="group flex items-center justify-between py-2 transition-colors"
+                  >
+                    <span
+                      class="text-2xl font-display text-secondary group-hover:text-primary transition-colors"
+                      >{{ phone }}</span
+                    >
+                    <lucide-icon
+                      [img]="Phone"
+                      class="h-5 w-5 text-secondary/20 group-hover:text-primary transition-colors"
+                    ></lucide-icon>
+                  </a>
+                }
+                @if (contactInfo().whatsapp) {
+                  <a
+                    href="https://wa.me/{{ contactInfo().whatsapp }}"
+                    target="_blank"
+                    class="group flex items-center justify-between py-2 transition-colors"
+                  >
+                    <span
+                      class="text-2xl font-display text-primary group-hover:opacity-70 transition-opacity"
+                      >WhatsApp</span
+                    >
+                    <lucide-icon
+                      [img]="MessageCircle"
+                      class="h-5 w-5 text-primary/30 group-hover:text-primary transition-colors"
+                    ></lucide-icon>
+                  </a>
+                }
+              </div>
+            </section>
+
+            <!-- Redes -->
+            @if (socialMedia().length > 0) {
+              <section>
+                <h2 class="text-xs font-black uppercase tracking-[0.3em] text-secondary/30 mb-6">
+                  Redes Sociales
+                </h2>
+                <div class="flex flex-wrap gap-x-8 gap-y-4">
+                  @for (social of socialMedia(); track social.name) {
+                    <a
+                      [href]="social.url"
+                      target="_blank"
+                      class="text-sm font-black uppercase tracking-[0.2em] text-secondary hover:text-primary transition-colors underline decoration-secondary/10 underline-offset-8 decoration-2 hover:decoration-primary/30"
+                    >
+                      {{ social.name }}
+                    </a>
+                  }
+                </div>
+              </section>
+            }
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Floating Minimal CTA -->
+    <div class="fixed bottom-10 left-0 right-0 flex justify-center z-50">
+      <a
+        [routerLink]="['/menu', restaurantSlug()]"
+        class="group flex items-center gap-4 bg-secondary text-white px-12 py-5 rounded-full shadow-2xl hover:bg-primary transition-all duration-500 hover:scale-105 active:scale-95"
+      >
+        <span class="text-sm font-black uppercase tracking-[0.3em]">Explorar Menú</span>
+        <lucide-icon
+          [img]="ArrowLeft"
+          class="h-4 w-4 rotate-180 transition-transform group-hover:translate-x-2"
+        ></lucide-icon>
+      </a>
+    </div>
+  </div>
+}

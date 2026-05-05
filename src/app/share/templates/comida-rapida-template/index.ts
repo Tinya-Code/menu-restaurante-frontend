@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { Product } from '../../../core/models/product.model';
 import { ComidaRapidaCardComponent } from './comida-rapida-card/comida-rapida-card';
 import { ComidaRapidaHeader } from './header/header';
@@ -8,7 +8,7 @@ import { ComidaRapidaFooter } from './footer/footer';
 @Component({
   selector: 'app-comida-rapida-template',
   standalone: true,
-  imports: [CommonModule, ComidaRapidaCardComponent, ComidaRapidaHeader, ComidaRapidaFooter],
+  imports: [ComidaRapidaCardComponent, ComidaRapidaHeader, ComidaRapidaFooter],
   template: `
     <app-comida-rapida-header [restaurantName]="restaurantName()"></app-comida-rapida-header>
     

@@ -1,0 +1,62 @@
+@if (isVisible() && currentBanner()) {
+  <div
+    class="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4 sm:p-6 md:p-8"
+  >
+    <div class="relative w-full max-w-4xl">
+      <!-- Close button -->
+      <button
+        (click)="close()"
+        class="absolute -top-10 sm:-top-12 right-0 text-white hover:text-white/80 transition-colors z-10"
+        aria-label="Cerrar banner"
+      >
+        <lucide-icon [img]="X" class="w-6 h-6 sm:w-8 sm:h-8"></lucide-icon>
+      </button>
+
+      <!-- Banner image -->
+      <img
+        [src]="currentBanner()!.url"
+        [alt]="currentBanner()!.cloudinary_id"
+        [title]="currentBanner()!.cloudinary_id"
+        class="w-full h-auto max-h-[70vh] sm:max-h-[80vh] object-contain rounded-lg shadow-2xl"
+      />
+
+      <!-- Navigation buttons -->
+      @if (hasMultipleBanners()) {
+        <button
+          (click)="prevSlide()"
+          class="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-colors z-10"
+          aria-label="Banner anterior"
+        >
+          <lucide-icon [img]="ChevronLeft" class="w-5 h-5 sm:w-6 sm:h-6"></lucide-icon>
+        </button>
+        <button
+          (click)="nextSlide()"
+          class="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-colors z-10"
+          aria-label="Siguiente banner"
+        >
+          <lucide-icon [img]="ChevronRight" class="w-5 h-5 sm:w-6 sm:h-6"></lucide-icon>
+        </button>
+      }
+
+      <!-- Timer counter -->
+      <div
+        class="absolute bottom-3 sm:bottom-4 right-3 sm:right-4 bg-black/60 text-white px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full text-xs sm:text-sm font-medium backdrop-blur-sm"
+      >
+        {{ formattedTime() }}s
+      </div>
+
+      <!-- Slide indicators -->
+      @if (hasMultipleBanners()) {
+        <div class="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 flex gap-2">
+          @for (banner of banners(); track banner.cloudinary_id) {
+            <div
+              class="w-2 h-2 rounded-full transition-colors"
+              [class.bg-white]="currentIndex() === $index"
+              [class.bg-white/50]="currentIndex() !== $index"
+            ></div>
+          }
+        </div>
+      }
+    </div>
+  </div>
+}

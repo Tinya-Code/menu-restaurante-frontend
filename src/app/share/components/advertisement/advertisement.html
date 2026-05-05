@@ -1,0 +1,17 @@
+<aside class="w-full my-12">
+  <div class="p-6">
+    <h2 class="text-lg font-medium text-primary mb-4">{{ title() }}</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      @for (item of items(); track item.id) {
+        <div class="relative overflow-hidden rounded-lg bg-white/5" [style.aspect-ratio]="item.format?.width + '/' + item.format?.height || '16/9'">
+          <img
+            [src]="item.url"
+            [alt]="item.alt"
+            [title]="item.alt"
+            class="w-full h-full object-cover"
+          />
+        </div>
+      }
+    </div>
+  </div>
+</aside>

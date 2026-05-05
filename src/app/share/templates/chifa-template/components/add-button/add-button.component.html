@@ -1,0 +1,8 @@
+<button
+  (click)="handleClick($event)"
+  class="bg-gradient-to-b from-accent from-50% to-accent-muted to-50% text-primary-text uppercase font-display active:scale-95 transition-all duration-300 rounded-sm {{
+    sizeClasses
+  }} {{ customClass() }}"
+>
+  {{ text() }}
+</button>

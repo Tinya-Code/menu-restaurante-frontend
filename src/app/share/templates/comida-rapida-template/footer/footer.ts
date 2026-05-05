@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject, computed } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { LucideAngularModule, Zap, ShoppingCart, Facebook, Instagram, Twitter } from 'lucide-angular';
 import { BusinessHoursService } from '../../../../core/services/business-hours.service';
 import { RestaurantService } from '../../../../core/services/restaurant.service';
@@ -8,7 +8,7 @@ import { TimeFormatPipe } from '../../../pipes/time-format.pipe';
 @Component({
   selector: 'app-comida-rapida-footer',
   standalone: true,
-  imports: [CommonModule, LucideAngularModule, TimeFormatPipe],
+  imports: [LucideAngularModule, TimeFormatPipe],
   templateUrl: './footer.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import 'tailwindcss';
+@import 'leaflet/dist/leaflet.css';
 
 @font-face {
   font-family: 'Bungee';
@@ -99,9 +100,9 @@
   --color-secondary-muted: #1a1e33;
   --color-accent: #fcb418;
   --color-accent-muted: #e0981f;
-  --color-muted: #c0c8cd;
+  --color-muted: #fef4e8;
   --color-background: #fffbf2;
-  --color-primary-text: #ffffff;
+  --color-primary-text: #fff;
   --color-secondary-text: #c0c8cd;
   --color-primary-text-muted: #ab292c;
   --color-primary-text-accent: #c72f2f;

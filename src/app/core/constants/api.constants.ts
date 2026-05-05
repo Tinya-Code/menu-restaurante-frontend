@@ -28,7 +28,7 @@ export const API_CONSTANTS = {
     CONTACTO: '/contact',
     AUTH: {
       REGISTER: '/auth/register',
-    }
+    },
   },
   DEFAULT_CONFIG: {
     CURRENCY: 'PEN',
@@ -37,4 +37,15 @@ export const API_CONSTANTS = {
     TIMEZONE: 'America/Lima',
   },
   TIMEOUT: 15000,
+};
+
+// Helper methods for dynamic endpoint generation
+export const RESTAURANT_ENDPOINTS = {
+  BY_SLUG: (slug: string) => `/restaurant/${slug}`,
+  MENU: (slug: string) => `/restaurant/${slug}/menu`,
+  CATEGORIES: (slug: string) => `/restaurant/${slug}/categories`,
+  TEMPLATE: (slug: string) => `/restaurant/${slug}/template`,
+  COMBOS: (slug: string) => `/restaurant/${slug}/combos`,
+  PROMOTIONS: (slug: string) => `/restaurant/${slug}/promotions`,
+  BANNERS: (slug: string) => `/restaurant/${slug}/banners`,
 };

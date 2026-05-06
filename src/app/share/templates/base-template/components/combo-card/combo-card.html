@@ -1,0 +1,50 @@
+<div
+  class="group b relative p-6 transition-all duration-300 overflow-hidden cursor-pointer active:scale-100 rounded-sm border-2 border-transparent hover:border-2 hover:border-accent flex flex-col"
+>
+  <!-- Combo Badge -->
+
+  <div class="relative flex flex-col h-full gap-4">
+    <div class="relative w-80 h-80 rounded-full group">
+      <!-- Imagen circular -->
+      <img
+        [src]="combo().image"
+        [alt]="combo().name"
+        [title]="combo().name"
+        class="w-full h-full rounded-full object-cover transition-transform duration-300"
+      />
+      <app-add-button
+        text="+"
+        size="compact"
+        customClass="absolute bottom-6 right-6 border-px border-white active"
+        (clicked)="addToCart.emit(combo())"
+      ></app-add-button>
+    </div>
+    <!-- Texto alrededor del círculo -->
+    <svg
+      viewBox="0 0 200 200"
+      class="absolute text-white -top-15 -right-15 w-110 h-110 pointer-events-none"
+    >
+      <defs>
+        <path id="circlePath" d="M100,100 m-75,0 a75,75 0 1,1 150,0 a75,75 0 1,1 -150,0" />
+      </defs>
+
+      <text fill="white" class="font-display text-[8px] tracking-widest">
+        <textPath href="#circlePath">{{ combo().name }}</textPath>
+      </text>
+    </svg>
+
+    <div class="flex-1 flex flex-col gap-3">
+      <p class="text-primary-text font-body text-base leading-relaxed line-clamp-3">
+        {{ combo().description }}
+      </p>
+    </div>
+
+    <div class="flex gap-3 pt-4 mt-auto">
+      <p
+        class="text-3xl font-display text-transparent bg-clip-text bg-gradient-to-b from-accent from-50% to-accent-muted to-50%"
+      >
+        {{ combo().price | precio }}
+      </p>
+    </div>
+  </div>
+</div>

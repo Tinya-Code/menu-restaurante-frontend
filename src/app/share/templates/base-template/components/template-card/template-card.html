@@ -1,0 +1,58 @@
+<div
+  (click)="productClick.emit(product())"
+  class="group relative p-4 transition-all duration-300 overflow-hidden cursor-pointer hover:bg-secondary-muted active:scale-[0.99] rounded-sm"
+>
+  <div class="relative z-10 flex justify-between items-start gap-4">
+    <div class="flex-1">
+      <div class="flex items-center gap-2">
+        <h3
+          class="text-2xl font-display text-transparent bg-clip-text bg-gradient-to-b from-primary-text from-50% to-secondary-text to-50% tracking-tight group-hover:text-primary transition-colors"
+        >
+          {{ product().name }}
+        </h3>
+
+        @if (product().is_recommended) {
+          <app-tooltip-button tooltipText="Recomendado">
+            <lucide-icon [img]="ThumbsUp" class="w-5 h-5 text-accent"> </lucide-icon>
+          </app-tooltip-button>
+        }
+      </div>
+    </div>
+    @if (product().description) {
+      <div class="text-right">
+        <span
+          class="text-lg font-display text-transparent bg-clip-text bg-gradient-to-b from-primary-text from-50% to-secondary-text to-50%"
+          >{{ product().price | precio }}</span
+        >
+      </div>
+    } @else {
+      <div class="flex items-center gap-2">
+        <span
+          class="text-lg font-display text-transparent bg-clip-text bg-gradient-to-b from-primary-text from-50% to-secondary-text to-50%"
+          >{{ product().price | precio }}</span
+        >
+        <app-add-button
+          text="+"
+          size="compact"
+          (clicked)="addToCart.emit(product())"
+        ></app-add-button>
+      </div>
+    }
+  </div>
+  @if (product().description) {
+    <div class="relative z-10 flex justify-between items-start gap-2 pt-3">
+      <p
+        class="text-secondary-text font-body text-sm leading-relaxed max-w-[60%] border-t border-secondary/10 italic"
+      >
+        {{ product().description }}
+      </p>
+      <div class="flex gap-2 ml-auto">
+        <app-add-button
+          text="+"
+          size="compact"
+          (clicked)="addToCart.emit(product())"
+        ></app-add-button>
+      </div>
+    </div>
+  }
+</div>

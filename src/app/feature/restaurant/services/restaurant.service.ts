@@ -1,8 +1,8 @@
 import { Injectable, inject } from '@angular/core';
-import { Observable, from, catchError, of, map } from 'rxjs';
-import { ApiService } from '../../../core/services/api.service';
+import { Observable, catchError, from, map, of } from 'rxjs';
 import { RESTAURANT_ENDPOINTS } from '../../../core/constants/api.constants';
 import { ApiResponse } from '../../../core/models/api-response.model';
+import { ApiService } from '../../../core/services/api.service';
 
 @Injectable({
   providedIn: 'root',
@@ -61,13 +61,23 @@ export class RestaurantService {
       return this.loadLocalData(slug).pipe(
         map((data) => {
           if (!data || !data.restaurantResponse) {
-            return { success: false, data: null, status: 500 };
+            return {
+              success: false,
+              data: null,
+              message: 'Error loading restaurant data',
+              timestamp: new Date().toISOString(),
+            };
           }
           return data.restaurantResponse;
         }),
         catchError((err) => {
-          return of({ success: false, data: null, status: 500 });
-        }),
+          return of({
+            success: false,
+            data: null,
+            message: 'Error loading restaurant data',
+            timestamp: new Date().toISOString(),
+          });
+        })
       );
     }
 
@@ -76,13 +86,25 @@ export class RestaurantService {
         return this.loadLocalData(slug).pipe(
           map((data) => {
             if (!data || !data.restaurantResponse) {
-              return { success: false, data: null, status: 500 };
+              return {
+                success: false,
+                data: null,
+                message: 'Error loading menu categories',
+                timestamp: new Date().toISOString(),
+              };
             }
             return data.restaurantResponse;
           }),
-          catchError(() => of({ success: false, data: null, status: 500 })),
+          catchError(() =>
+            of({
+              success: false,
+              data: null,
+              message: 'Error loading menu categories',
+              timestamp: new Date().toISOString(),
+            })
+          )
         );
-      }),
+      })
     );
   }
 
@@ -94,11 +116,23 @@ export class RestaurantService {
       return this.loadLocalData(slug).pipe(
         map((data) => {
           if (!data || !data.menuCategoriesResponse) {
-            return { success: false, data: null, status: 500 };
+            return {
+              success: false,
+              data: null,
+              message: 'Error loading menu categories',
+              timestamp: new Date().toISOString(),
+            };
           }
           return data.menuCategoriesResponse;
         }),
-        catchError(() => of({ success: false, data: null, status: 500 })),
+        catchError(() =>
+          of({
+            success: false,
+            data: null,
+            message: 'Error loading menu categories',
+            timestamp: new Date().toISOString(),
+          })
+        )
       );
     }
 
@@ -107,13 +141,25 @@ export class RestaurantService {
         return this.loadLocalData(slug).pipe(
           map((data) => {
             if (!data || !data.menuCategoriesResponse) {
-              return { success: false, data: null, status: 500 };
+              return {
+                success: false,
+                data: null,
+                message: 'Error loading menu categories',
+                timestamp: new Date().toISOString(),
+              };
             }
             return data.menuCategoriesResponse;
           }),
-          catchError(() => of({ success: false, data: null, status: 500 })),
+          catchError(() =>
+            of({
+              success: false,
+              data: null,
+              message: 'Error loading menu categories',
+              timestamp: new Date().toISOString(),
+            })
+          )
         );
-      }),
+      })
     );
   }
 
@@ -125,11 +171,23 @@ export class RestaurantService {
       return this.loadLocalData(slug).pipe(
         map((data) => {
           if (!data || !data.categoryListResponse) {
-            return { success: false, data: null, status: 500 };
+            return {
+              success: false,
+              data: null,
+              message: 'Error loading category list',
+              timestamp: new Date().toISOString(),
+            };
           }
           return data.categoryListResponse;
         }),
-        catchError(() => of({ success: false, data: null, status: 500 })),
+        catchError(() =>
+          of({
+            success: false,
+            data: null,
+            message: 'Error loading menu categories',
+            timestamp: new Date().toISOString(),
+          })
+        )
       );
     }
 
@@ -138,13 +196,25 @@ export class RestaurantService {
         return this.loadLocalData(slug).pipe(
           map((data) => {
             if (!data || !data.categoryListResponse) {
-              return { success: false, data: null, status: 500 };
+              return {
+                success: false,
+                data: null,
+                message: 'Error loading menu categories',
+                timestamp: new Date().toISOString(),
+              };
             }
             return data.categoryListResponse;
           }),
-          catchError(() => of({ success: false, data: null, status: 500 })),
+          catchError(() =>
+            of({
+              success: false,
+              data: null,
+              message: 'Error loading menu categories',
+              timestamp: new Date().toISOString(),
+            })
+          )
         );
-      }),
+      })
     );
   }
 
@@ -156,11 +226,23 @@ export class RestaurantService {
       return this.loadLocalData(slug).pipe(
         map((data) => {
           if (!data || !data.templateResponse) {
-            return { success: false, data: null, status: 500 };
+            return {
+              success: false,
+              data: null,
+              message: 'Error loading template data',
+              timestamp: new Date().toISOString(),
+            };
           }
           return data.templateResponse;
         }),
-        catchError(() => of({ success: false, data: null, status: 500 })),
+        catchError(() =>
+          of({
+            success: false,
+            data: null,
+            message: 'Error loading menu categories',
+            timestamp: new Date().toISOString(),
+          })
+        )
       );
     }
 
@@ -169,13 +251,25 @@ export class RestaurantService {
         return this.loadLocalData(slug).pipe(
           map((data) => {
             if (!data || !data.templateResponse) {
-              return { success: false, data: null, status: 500 };
+              return {
+                success: false,
+                data: null,
+                message: 'Error loading menu categories',
+                timestamp: new Date().toISOString(),
+              };
             }
             return data.templateResponse;
           }),
-          catchError(() => of({ success: false, data: null, status: 500 })),
+          catchError(() =>
+            of({
+              success: false,
+              data: null,
+              message: 'Error loading menu categories',
+              timestamp: new Date().toISOString(),
+            })
+          )
         );
-      }),
+      })
     );
   }
 
@@ -187,11 +281,23 @@ export class RestaurantService {
       return this.loadLocalData(slug).pipe(
         map((data) => {
           if (!data || !data.combosResponse) {
-            return { success: false, data: null, status: 500 };
+            return {
+              success: false,
+              data: null,
+              message: 'Error loading combos',
+              timestamp: new Date().toISOString(),
+            };
           }
           return data.combosResponse;
         }),
-        catchError(() => of({ success: false, data: null, status: 500 })),
+        catchError(() =>
+          of({
+            success: false,
+            data: null,
+            message: 'Error loading menu categories',
+            timestamp: new Date().toISOString(),
+          })
+        )
       );
     }
 
@@ -200,13 +306,25 @@ export class RestaurantService {
         return this.loadLocalData(slug).pipe(
           map((data) => {
             if (!data || !data.combosResponse) {
-              return { success: false, data: null, status: 500 };
+              return {
+                success: false,
+                data: null,
+                message: 'Error loading menu categories',
+                timestamp: new Date().toISOString(),
+              };
             }
             return data.combosResponse;
           }),
-          catchError(() => of({ success: false, data: null, status: 500 })),
+          catchError(() =>
+            of({
+              success: false,
+              data: null,
+              message: 'Error loading menu categories',
+              timestamp: new Date().toISOString(),
+            })
+          )
         );
-      }),
+      })
     );
   }
 
@@ -218,11 +336,23 @@ export class RestaurantService {
       return this.loadLocalData(slug).pipe(
         map((data) => {
           if (!data || !data.promotionsResponse) {
-            return { success: false, data: null, status: 500 };
+            return {
+              success: false,
+              data: null,
+              message: 'Error loading promotions',
+              timestamp: new Date().toISOString(),
+            };
           }
           return data.promotionsResponse;
         }),
-        catchError(() => of({ success: false, data: null, status: 500 })),
+        catchError(() =>
+          of({
+            success: false,
+            data: null,
+            message: 'Error loading menu categories',
+            timestamp: new Date().toISOString(),
+          })
+        )
       );
     }
 
@@ -231,13 +361,25 @@ export class RestaurantService {
         return this.loadLocalData(slug).pipe(
           map((data) => {
             if (!data || !data.promotionsResponse) {
-              return { success: false, data: null, status: 500 };
+              return {
+                success: false,
+                data: null,
+                message: 'Error loading menu categories',
+                timestamp: new Date().toISOString(),
+              };
             }
             return data.promotionsResponse;
           }),
-          catchError(() => of({ success: false, data: null, status: 500 })),
+          catchError(() =>
+            of({
+              success: false,
+              data: null,
+              message: 'Error loading menu categories',
+              timestamp: new Date().toISOString(),
+            })
+          )
         );
-      }),
+      })
     );
   }
 
@@ -249,11 +391,23 @@ export class RestaurantService {
       return this.loadLocalData(slug).pipe(
         map((data) => {
           if (!data || !data.bannerResponse) {
-            return { success: false, data: null, status: 500 };
+            return {
+              success: false,
+              data: null,
+              message: 'Error loading banners',
+              timestamp: new Date().toISOString(),
+            };
           }
           return data.bannerResponse;
         }),
-        catchError(() => of({ success: false, data: null, status: 500 })),
+        catchError(() =>
+          of({
+            success: false,
+            data: null,
+            message: 'Error loading menu categories',
+            timestamp: new Date().toISOString(),
+          })
+        )
       );
     }
 
@@ -262,13 +416,25 @@ export class RestaurantService {
         return this.loadLocalData(slug).pipe(
           map((data) => {
             if (!data || !data.bannerResponse) {
-              return { success: false, data: null, status: 500 };
+              return {
+                success: false,
+                data: null,
+                message: 'Error loading menu categories',
+                timestamp: new Date().toISOString(),
+              };
             }
             return data.bannerResponse;
           }),
-          catchError(() => of({ success: false, data: null, status: 500 })),
+          catchError(() =>
+            of({
+              success: false,
+              data: null,
+              message: 'Error loading menu categories',
+              timestamp: new Date().toISOString(),
+            })
+          )
         );
-      }),
+      })
     );
   }
 }
